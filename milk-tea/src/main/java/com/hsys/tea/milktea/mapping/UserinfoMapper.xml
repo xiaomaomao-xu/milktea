@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.UserinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Userinfo" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="user_birthday" property="userBirthday" jdbcType="TIMESTAMP" />
+    <result column="user_wallet" property="userWallet" jdbcType="INTEGER" />
+    <result column="user_integrals" property="userIntegrals" jdbcType="INTEGER" />
+    <result column="user_monetary" property="userMonetary" jdbcType="INTEGER" />
+    <result column="payment_code" property="paymentCode" jdbcType="VARCHAR" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="user_avatar_url" property="userAvatarUrl" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="user_type" property="userType" jdbcType="INTEGER" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name, user_phone, user_sex, user_birthday, user_wallet, user_integrals, 
+    user_monetary, payment_code, open_id, user_avatar_url, create_time, modify_time, 
+    user_type, user_password
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userinfo
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Userinfo" >
+    insert into userinfo (user_id, user_name, user_phone, 
+      user_sex, user_birthday, user_wallet, 
+      user_integrals, user_monetary, payment_code, 
+      open_id, user_avatar_url, create_time, 
+      modify_time, user_type, user_password
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=VARCHAR}, #{userBirthday,jdbcType=TIMESTAMP}, #{userWallet,jdbcType=INTEGER}, 
+      #{userIntegrals,jdbcType=INTEGER}, #{userMonetary,jdbcType=INTEGER}, #{paymentCode,jdbcType=VARCHAR}, 
+      #{openId,jdbcType=VARCHAR}, #{userAvatarUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{userType,jdbcType=INTEGER}, #{userPassword,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Userinfo" >
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="userBirthday != null" >
+        user_birthday,
+      </if>
+      <if test="userWallet != null" >
+        user_wallet,
+      </if>
+      <if test="userIntegrals != null" >
+        user_integrals,
+      </if>
+      <if test="userMonetary != null" >
+        user_monetary,
+      </if>
+      <if test="paymentCode != null" >
+        payment_code,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="userAvatarUrl != null" >
+        user_avatar_url,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null" >
+        #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userWallet != null" >
+        #{userWallet,jdbcType=INTEGER},
+      </if>
+      <if test="userIntegrals != null" >
+        #{userIntegrals,jdbcType=INTEGER},
+      </if>
+      <if test="userMonetary != null" >
+        #{userMonetary,jdbcType=INTEGER},
+      </if>
+      <if test="paymentCode != null" >
+        #{paymentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="userAvatarUrl != null" >
+        #{userAvatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.Userinfo" >
+    update userinfo
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null" >
+        user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userWallet != null" >
+        user_wallet = #{userWallet,jdbcType=INTEGER},
+      </if>
+      <if test="userIntegrals != null" >
+        user_integrals = #{userIntegrals,jdbcType=INTEGER},
+      </if>
+      <if test="userMonetary != null" >
+        user_monetary = #{userMonetary,jdbcType=INTEGER},
+      </if>
+      <if test="paymentCode != null" >
+        payment_code = #{paymentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="userAvatarUrl != null" >
+        user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="userPassword != null" >
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Userinfo" >
+    update userinfo
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      user_wallet = #{userWallet,jdbcType=INTEGER},
+      user_integrals = #{userIntegrals,jdbcType=INTEGER},
+      user_monetary = #{userMonetary,jdbcType=INTEGER},
+      payment_code = #{paymentCode,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      user_type = #{userType,jdbcType=INTEGER},
+      user_password = #{userPassword,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

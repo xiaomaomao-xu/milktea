@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.InfUserCouponRelMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.InfUserCouponRel" >
+    <id column="rel_id" property="relId" jdbcType="INTEGER" />
+    <result column="vip_id" property="vipId" jdbcType="INTEGER" />
+    <result column="svip_id" property="svipId" jdbcType="INTEGER" />
+    <result column="coupons" property="coupons" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rel_id, vip_id, svip_id, coupons, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from inf_user_coupon_rel
+    where rel_id = #{relId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from inf_user_coupon_rel
+    where rel_id = #{relId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.InfUserCouponRel" >
+    insert into inf_user_coupon_rel (rel_id, vip_id, svip_id, 
+      coupons, create_time, modify_time
+      )
+    values (#{relId,jdbcType=INTEGER}, #{vipId,jdbcType=INTEGER}, #{svipId,jdbcType=INTEGER}, 
+      #{coupons,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.InfUserCouponRel" >
+    insert into inf_user_coupon_rel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="relId != null" >
+        rel_id,
+      </if>
+      <if test="vipId != null" >
+        vip_id,
+      </if>
+      <if test="svipId != null" >
+        svip_id,
+      </if>
+      <if test="coupons != null" >
+        coupons,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="relId != null" >
+        #{relId,jdbcType=INTEGER},
+      </if>
+      <if test="vipId != null" >
+        #{vipId,jdbcType=INTEGER},
+      </if>
+      <if test="svipId != null" >
+        #{svipId,jdbcType=INTEGER},
+      </if>
+      <if test="coupons != null" >
+        #{coupons,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.InfUserCouponRel" >
+    update inf_user_coupon_rel
+    <set >
+      <if test="vipId != null" >
+        vip_id = #{vipId,jdbcType=INTEGER},
+      </if>
+      <if test="svipId != null" >
+        svip_id = #{svipId,jdbcType=INTEGER},
+      </if>
+      <if test="coupons != null" >
+        coupons = #{coupons,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where rel_id = #{relId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.InfUserCouponRel" >
+    update inf_user_coupon_rel
+    set vip_id = #{vipId,jdbcType=INTEGER},
+      svip_id = #{svipId,jdbcType=INTEGER},
+      coupons = #{coupons,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where rel_id = #{relId,jdbcType=INTEGER}
+  </update>
+</mapper>

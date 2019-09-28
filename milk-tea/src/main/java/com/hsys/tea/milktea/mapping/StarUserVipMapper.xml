@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.StarUserVipMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.StarUserVip" >
+    <id column="svip_id" property="svipId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="user_star_empirical" property="userStarEmpirical" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="svip_state" property="svipState" jdbcType="INTEGER" />
+    <result column="eff_time" property="effTime" jdbcType="TIMESTAMP" />
+    <result column="ept_time" property="eptTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    svip_id, create_time, user_star_empirical, user_id, svip_state, eff_time, ept_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from star_user_vip
+    where svip_id = #{svipId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from star_user_vip
+    where svip_id = #{svipId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.StarUserVip" >
+    insert into star_user_vip (svip_id, create_time, user_star_empirical, 
+      user_id, svip_state, eff_time, 
+      ept_time)
+    values (#{svipId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{userStarEmpirical,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{svipState,jdbcType=INTEGER}, #{effTime,jdbcType=TIMESTAMP}, 
+      #{eptTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.StarUserVip" >
+    insert into star_user_vip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="svipId != null" >
+        svip_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="userStarEmpirical != null" >
+        user_star_empirical,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="svipState != null" >
+        svip_state,
+      </if>
+      <if test="effTime != null" >
+        eff_time,
+      </if>
+      <if test="eptTime != null" >
+        ept_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="svipId != null" >
+        #{svipId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userStarEmpirical != null" >
+        #{userStarEmpirical,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="svipState != null" >
+        #{svipState,jdbcType=INTEGER},
+      </if>
+      <if test="effTime != null" >
+        #{effTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eptTime != null" >
+        #{eptTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.StarUserVip" >
+    update star_user_vip
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userStarEmpirical != null" >
+        user_star_empirical = #{userStarEmpirical,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="svipState != null" >
+        svip_state = #{svipState,jdbcType=INTEGER},
+      </if>
+      <if test="effTime != null" >
+        eff_time = #{effTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eptTime != null" >
+        ept_time = #{eptTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where svip_id = #{svipId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.StarUserVip" >
+    update star_user_vip
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      user_star_empirical = #{userStarEmpirical,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      svip_state = #{svipState,jdbcType=INTEGER},
+      eff_time = #{effTime,jdbcType=TIMESTAMP},
+      ept_time = #{eptTime,jdbcType=TIMESTAMP}
+    where svip_id = #{svipId,jdbcType=INTEGER}
+  </update>
+</mapper>

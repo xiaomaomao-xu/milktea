@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.ShopkeeperinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Shopkeeperinfo" >
+    <id column="shopkeeper_id" property="shopkeeperId" jdbcType="INTEGER" />
+    <result column="principal" property="principal" jdbcType="VARCHAR" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="business" property="business" jdbcType="VARCHAR" />
+    <result column="idnumber" property="idnumber" jdbcType="VARCHAR" />
+    <result column="Idcaidurl" property="idcaidurl" jdbcType="VARCHAR" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    shopkeeper_id, principal, store_id, phone, business, idnumber, Idcaidurl, open_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shopkeeperinfo
+    where shopkeeper_id = #{shopkeeperId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shopkeeperinfo
+    where shopkeeper_id = #{shopkeeperId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Shopkeeperinfo" >
+    insert into shopkeeperinfo (shopkeeper_id, principal, store_id, 
+      phone, business, idnumber, 
+      Idcaidurl, open_id)
+    values (#{shopkeeperId,jdbcType=INTEGER}, #{principal,jdbcType=VARCHAR}, #{storeId,jdbcType=INTEGER}, 
+      #{phone,jdbcType=VARCHAR}, #{business,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}, 
+      #{idcaidurl,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Shopkeeperinfo" >
+    insert into shopkeeperinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopkeeperId != null" >
+        shopkeeper_id,
+      </if>
+      <if test="principal != null" >
+        principal,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="business != null" >
+        business,
+      </if>
+      <if test="idnumber != null" >
+        idnumber,
+      </if>
+      <if test="idcaidurl != null" >
+        Idcaidurl,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopkeeperId != null" >
+        #{shopkeeperId,jdbcType=INTEGER},
+      </if>
+      <if test="principal != null" >
+        #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="business != null" >
+        #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null" >
+        #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idcaidurl != null" >
+        #{idcaidurl,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.Shopkeeperinfo" >
+    update shopkeeperinfo
+    <set >
+      <if test="principal != null" >
+        principal = #{principal,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="business != null" >
+        business = #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null" >
+        idnumber = #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idcaidurl != null" >
+        Idcaidurl = #{idcaidurl,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shopkeeper_id = #{shopkeeperId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Shopkeeperinfo" >
+    update shopkeeperinfo
+    set principal = #{principal,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      business = #{business,jdbcType=VARCHAR},
+      idnumber = #{idnumber,jdbcType=VARCHAR},
+      Idcaidurl = #{idcaidurl,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR}
+    where shopkeeper_id = #{shopkeeperId,jdbcType=INTEGER}
+  </update>
+</mapper>

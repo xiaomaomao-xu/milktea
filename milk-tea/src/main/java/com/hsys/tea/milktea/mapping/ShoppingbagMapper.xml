@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.ShoppingbagMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Shoppingbag" >
+    <id column="bag_id" property="bagId" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="commodity_id" property="commodityId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="commodity_qantity" property="commodityQantity" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bag_id, store_id, commodity_id, user_id, commodity_qantity, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shoppingbag
+    where bag_id = #{bagId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shoppingbag
+    where bag_id = #{bagId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Shoppingbag" >
+    insert into shoppingbag (bag_id, store_id, commodity_id, 
+      user_id, commodity_qantity, create_time
+      )
+    values (#{bagId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{commodityQantity,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Shoppingbag" >
+    insert into shoppingbag
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bagId != null" >
+        bag_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="commodityId != null" >
+        commodity_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="commodityQantity != null" >
+        commodity_qantity,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bagId != null" >
+        #{bagId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityId != null" >
+        #{commodityId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityQantity != null" >
+        #{commodityQantity,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.Shoppingbag" >
+    update shoppingbag
+    <set >
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityId != null" >
+        commodity_id = #{commodityId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityQantity != null" >
+        commodity_qantity = #{commodityQantity,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bag_id = #{bagId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Shoppingbag" >
+    update shoppingbag
+    set store_id = #{storeId,jdbcType=INTEGER},
+      commodity_id = #{commodityId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      commodity_qantity = #{commodityQantity,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where bag_id = #{bagId,jdbcType=INTEGER}
+  </update>
+</mapper>

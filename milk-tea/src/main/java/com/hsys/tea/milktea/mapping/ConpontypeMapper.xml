@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.ConpontypeMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Conpontype" >
+    <id column="conpon_type_id" property="conponTypeId" jdbcType="INTEGER" />
+    <result column="coupon_name" property="couponName" jdbcType="VARCHAR" />
+    <result column="coupon_remark" property="couponRemark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    conpon_type_id, coupon_name, coupon_remark, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from conpontype
+    where conpon_type_id = #{conponTypeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from conpontype
+    where conpon_type_id = #{conponTypeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Conpontype" >
+    insert into conpontype (conpon_type_id, coupon_name, coupon_remark, 
+      create_time)
+    values (#{conponTypeId,jdbcType=INTEGER}, #{couponName,jdbcType=VARCHAR}, #{couponRemark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Conpontype" >
+    insert into conpontype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="conponTypeId != null" >
+        conpon_type_id,
+      </if>
+      <if test="couponName != null" >
+        coupon_name,
+      </if>
+      <if test="couponRemark != null" >
+        coupon_remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="conponTypeId != null" >
+        #{conponTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="couponName != null" >
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponRemark != null" >
+        #{couponRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.Conpontype" >
+    update conpontype
+    <set >
+      <if test="couponName != null" >
+        coupon_name = #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponRemark != null" >
+        coupon_remark = #{couponRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where conpon_type_id = #{conponTypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Conpontype" >
+    update conpontype
+    set coupon_name = #{couponName,jdbcType=VARCHAR},
+      coupon_remark = #{couponRemark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where conpon_type_id = #{conponTypeId,jdbcType=INTEGER}
+  </update>
+</mapper>

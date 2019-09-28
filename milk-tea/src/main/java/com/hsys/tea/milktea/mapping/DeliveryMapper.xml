@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.DeliveryMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Delivery" >
+    <id column="delivery_id" property="deliveryId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="delivery_state" property="deliveryState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    delivery_id, order_id, store_id, user_id, address_id, create_time, delivery_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from delivery
+    where delivery_id = #{deliveryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from delivery
+    where delivery_id = #{deliveryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Delivery" >
+    insert into delivery (delivery_id, order_id, store_id, 
+      user_id, address_id, create_time, 
+      delivery_state)
+    values (#{deliveryId,jdbcType=INTEGER}, #{orderId,jdbcType=BIGINT}, #{storeId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{deliveryState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Delivery" >
+    insert into delivery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deliveryId != null" >
+        delivery_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="deliveryState != null" >
+        delivery_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deliveryId != null" >
+        #{deliveryId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryState != null" >
+        #{deliveryState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.Delivery" >
+    update delivery
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryState != null" >
+        delivery_state = #{deliveryState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where delivery_id = #{deliveryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Delivery" >
+    update delivery
+    set order_id = #{orderId,jdbcType=BIGINT},
+      store_id = #{storeId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      address_id = #{addressId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      delivery_state = #{deliveryState,jdbcType=INTEGER}
+    where delivery_id = #{deliveryId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.UserVipMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.UserVip" >
+    <id column="vip_id" property="vipId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="user_goempirical" property="userGoempirical" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    vip_id, create_time, user_goempirical, user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_vip
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_vip
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.UserVip" >
+    insert into user_vip (vip_id, create_time, user_goempirical, 
+      user_id)
+    values (#{vipId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{userGoempirical,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.UserVip" >
+    insert into user_vip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="vipId != null" >
+        vip_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="userGoempirical != null" >
+        user_goempirical,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="vipId != null" >
+        #{vipId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userGoempirical != null" >
+        #{userGoempirical,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.UserVip" >
+    update user_vip
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userGoempirical != null" >
+        user_goempirical = #{userGoempirical,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.UserVip" >
+    update user_vip
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      user_goempirical = #{userGoempirical,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER}
+    where vip_id = #{vipId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.StoreinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Storeinfo" >
+    <id column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="store_account" property="storeAccount" jdbcType="VARCHAR" />
+    <result column="store_password" property="storePassword" jdbcType="VARCHAR" />
+    <result column="store_phone" property="storePhone" jdbcType="VARCHAR" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="store_address" property="storeAddress" jdbcType="VARCHAR" />
+    <result column="business_hours" property="businessHours" jdbcType="VARCHAR" />
+    <result column="shipping_instruction" property="shippingInstruction" jdbcType="VARCHAR" />
+    <result column="delivery_cost" property="deliveryCost" jdbcType="INTEGER" />
+    <result column="operating_start" property="operatingStart" jdbcType="INTEGER" />
+    <result column="takeout_start" property="takeoutStart" jdbcType="INTEGER" />
+    <result column="enter_time" property="enterTime" jdbcType="TIMESTAMP" />
+    <result column="turnover" property="turnover" jdbcType="INTEGER" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+    <result column="notice" property="notice" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    store_id, store_account, store_password, store_phone, store_name, store_address, 
+    business_hours, shipping_instruction, delivery_cost, operating_start, takeout_start, 
+    enter_time, turnover, latitude, longitude, notice
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from storeinfo
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from storeinfo
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Storeinfo" >
+    insert into storeinfo (store_id, store_account, store_password, 
+      store_phone, store_name, store_address, 
+      business_hours, shipping_instruction, delivery_cost, 
+      operating_start, takeout_start, enter_time, 
+      turnover, latitude, longitude, 
+      notice)
+    values (#{storeId,jdbcType=INTEGER}, #{storeAccount,jdbcType=VARCHAR}, #{storePassword,jdbcType=VARCHAR}, 
+      #{storePhone,jdbcType=VARCHAR}, #{storeName,jdbcType=VARCHAR}, #{storeAddress,jdbcType=VARCHAR}, 
+      #{businessHours,jdbcType=VARCHAR}, #{shippingInstruction,jdbcType=VARCHAR}, #{deliveryCost,jdbcType=INTEGER}, 
+      #{operatingStart,jdbcType=INTEGER}, #{takeoutStart,jdbcType=INTEGER}, #{enterTime,jdbcType=TIMESTAMP}, 
+      #{turnover,jdbcType=INTEGER}, #{latitude,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, 
+      #{notice,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Storeinfo" >
+    insert into storeinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="storeAccount != null" >
+        store_account,
+      </if>
+      <if test="storePassword != null" >
+        store_password,
+      </if>
+      <if test="storePhone != null" >
+        store_phone,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="storeAddress != null" >
+        store_address,
+      </if>
+      <if test="businessHours != null" >
+        business_hours,
+      </if>
+      <if test="shippingInstruction != null" >
+        shipping_instruction,
+      </if>
+      <if test="deliveryCost != null" >
+        delivery_cost,
+      </if>
+      <if test="operatingStart != null" >
+        operating_start,
+      </if>
+      <if test="takeoutStart != null" >
+        takeout_start,
+      </if>
+      <if test="enterTime != null" >
+        enter_time,
+      </if>
+      <if test="turnover != null" >
+        turnover,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="notice != null" >
+        notice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeAccount != null" >
+        #{storeAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="storePassword != null" >
+        #{storePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null" >
+        #{storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddress != null" >
+        #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="businessHours != null" >
+        #{businessHours,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingInstruction != null" >
+        #{shippingInstruction,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCost != null" >
+        #{deliveryCost,jdbcType=INTEGER},
+      </if>
+      <if test="operatingStart != null" >
+        #{operatingStart,jdbcType=INTEGER},
+      </if>
+      <if test="takeoutStart != null" >
+        #{takeoutStart,jdbcType=INTEGER},
+      </if>
+      <if test="enterTime != null" >
+        #{enterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="turnover != null" >
+        #{turnover,jdbcType=INTEGER},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="notice != null" >
+        #{notice,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.Storeinfo" >
+    update storeinfo
+    <set >
+      <if test="storeAccount != null" >
+        store_account = #{storeAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="storePassword != null" >
+        store_password = #{storePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null" >
+        store_phone = #{storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAddress != null" >
+        store_address = #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="businessHours != null" >
+        business_hours = #{businessHours,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingInstruction != null" >
+        shipping_instruction = #{shippingInstruction,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCost != null" >
+        delivery_cost = #{deliveryCost,jdbcType=INTEGER},
+      </if>
+      <if test="operatingStart != null" >
+        operating_start = #{operatingStart,jdbcType=INTEGER},
+      </if>
+      <if test="takeoutStart != null" >
+        takeout_start = #{takeoutStart,jdbcType=INTEGER},
+      </if>
+      <if test="enterTime != null" >
+        enter_time = #{enterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="turnover != null" >
+        turnover = #{turnover,jdbcType=INTEGER},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="notice != null" >
+        notice = #{notice,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Storeinfo" >
+    update storeinfo
+    set store_account = #{storeAccount,jdbcType=VARCHAR},
+      store_password = #{storePassword,jdbcType=VARCHAR},
+      store_phone = #{storePhone,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      store_address = #{storeAddress,jdbcType=VARCHAR},
+      business_hours = #{businessHours,jdbcType=VARCHAR},
+      shipping_instruction = #{shippingInstruction,jdbcType=VARCHAR},
+      delivery_cost = #{deliveryCost,jdbcType=INTEGER},
+      operating_start = #{operatingStart,jdbcType=INTEGER},
+      takeout_start = #{takeoutStart,jdbcType=INTEGER},
+      enter_time = #{enterTime,jdbcType=TIMESTAMP},
+      turnover = #{turnover,jdbcType=INTEGER},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      notice = #{notice,jdbcType=VARCHAR}
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.IntegralrecordMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Integralrecord" >
+    <id column="record_id" property="recordId" jdbcType="INTEGER" />
+    <result column="record_explain" property="recordExplain" jdbcType="VARCHAR" />
+    <result column="explain_time" property="explainTime" jdbcType="TIMESTAMP" />
+    <result column="integral_quantity" property="integralQuantity" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    record_id, record_explain, explain_time, integral_quantity, user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from integralrecord
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from integralrecord
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Integralrecord" >
+    insert into integralrecord (record_id, record_explain, explain_time, 
+      integral_quantity, user_id)
+    values (#{recordId,jdbcType=INTEGER}, #{recordExplain,jdbcType=VARCHAR}, #{explainTime,jdbcType=TIMESTAMP}, 
+      #{integralQuantity,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Integralrecord" >
+    insert into integralrecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        record_id,
+      </if>
+      <if test="recordExplain != null" >
+        record_explain,
+      </if>
+      <if test="explainTime != null" >
+        explain_time,
+      </if>
+      <if test="integralQuantity != null" >
+        integral_quantity,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="recordExplain != null" >
+        #{recordExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="explainTime != null" >
+        #{explainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="integralQuantity != null" >
+        #{integralQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.Integralrecord" >
+    update integralrecord
+    <set >
+      <if test="recordExplain != null" >
+        record_explain = #{recordExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="explainTime != null" >
+        explain_time = #{explainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="integralQuantity != null" >
+        integral_quantity = #{integralQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Integralrecord" >
+    update integralrecord
+    set record_explain = #{recordExplain,jdbcType=VARCHAR},
+      explain_time = #{explainTime,jdbcType=TIMESTAMP},
+      integral_quantity = #{integralQuantity,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER}
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+</mapper>
