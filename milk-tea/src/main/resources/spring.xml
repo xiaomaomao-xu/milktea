@@ -63,6 +63,19 @@
 		<!-- 扫描实体包目录下的类,来建立mapper中的实体别名 -->
 		<!-- 自动扫描mappers.xml文件 -->
 		<property name="mapperLocations" value="classpath:com/hsys/tea/milktea/mapping/*.xml"></property>
+		<!-- 配置分页插件 -->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <value>
+                            dialect=mysql
+                            reasonable=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
         <property name="typeAliasesPackage" value="com.hsys.tea.milktea.entity" />
 	</bean>
 
