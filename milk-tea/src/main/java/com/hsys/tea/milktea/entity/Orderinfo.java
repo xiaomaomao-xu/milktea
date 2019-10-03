@@ -23,6 +23,14 @@ public class Orderinfo {
 
     private Integer shippingFee;
 
+    private String address;
+
+    private Integer addressId;
+
+    private String remark;
+
+    private Integer paymentType;
+
     public Long getOrderId() {
         return orderId;
     }
@@ -101,5 +109,37 @@ public class Orderinfo {
 
     public void setShippingFee(Integer shippingFee) {
         this.shippingFee = shippingFee;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
+
+    public Integer getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
+    }
+
+    public Integer getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(Integer paymentType) {
+        this.paymentType = paymentType;
     }
 }

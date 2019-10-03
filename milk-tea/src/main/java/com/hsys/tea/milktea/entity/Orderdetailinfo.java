@@ -13,6 +13,12 @@ public class Orderdetailinfo {
 
     private Integer offeringNum;
 
+    private String address;
+
+    private Integer addressId;
+
+    private String remark;
+
     public Long getOrderDetailId() {
         return orderDetailId;
     }
@@ -51,5 +57,29 @@ public class Orderdetailinfo {
 
     public void setOfferingNum(Integer offeringNum) {
         this.offeringNum = offeringNum;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
+
+    public Integer getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 }

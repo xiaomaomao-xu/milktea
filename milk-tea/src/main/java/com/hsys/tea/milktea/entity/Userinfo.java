@@ -33,6 +33,8 @@ public class Userinfo {
 
     private String userPassword;
 
+    private String salt;
+
     public Integer getUserId() {
         return userId;
     }
@@ -151,5 +153,13 @@ public class Userinfo {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword == null ? null : userPassword.trim();
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt == null ? null : salt.trim();
     }
 }

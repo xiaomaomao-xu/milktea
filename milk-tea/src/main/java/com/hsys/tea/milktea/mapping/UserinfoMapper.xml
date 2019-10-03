@@ -17,11 +17,12 @@
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     <result column="user_type" property="userType" jdbcType="INTEGER" />
     <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     user_id, user_name, user_phone, user_sex, user_birthday, user_wallet, user_integrals, 
     user_monetary, payment_code, open_id, user_avatar_url, create_time, modify_time, 
-    user_type, user_password
+    user_type, user_password, salt
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -38,14 +39,14 @@
       user_sex, user_birthday, user_wallet, 
       user_integrals, user_monetary, payment_code, 
       open_id, user_avatar_url, create_time, 
-      modify_time, user_type, user_password
-      )
+      modify_time, user_type, user_password, 
+      salt)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
       #{userSex,jdbcType=VARCHAR}, #{userBirthday,jdbcType=TIMESTAMP}, #{userWallet,jdbcType=INTEGER}, 
       #{userIntegrals,jdbcType=INTEGER}, #{userMonetary,jdbcType=INTEGER}, #{paymentCode,jdbcType=VARCHAR}, 
       #{openId,jdbcType=VARCHAR}, #{userAvatarUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{userType,jdbcType=INTEGER}, #{userPassword,jdbcType=VARCHAR}
-      )
+      #{modifyTime,jdbcType=TIMESTAMP}, #{userType,jdbcType=INTEGER}, #{userPassword,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Userinfo" >
     insert into userinfo
@@ -95,6 +96,9 @@
       <if test="userPassword != null" >
         user_password,
       </if>
+      <if test="salt != null" >
+        salt,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -141,6 +145,9 @@
       </if>
       <if test="userPassword != null" >
         #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -189,6 +196,9 @@
       <if test="userPassword != null" >
         user_password = #{userPassword,jdbcType=VARCHAR},
       </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
@@ -207,7 +217,8 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       user_type = #{userType,jdbcType=INTEGER},
-      user_password = #{userPassword,jdbcType=VARCHAR}
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>
