@@ -21,7 +21,7 @@ public class MyWebSocketHandler implements WebSocketHandler{
     @Override
     public void afterConnectionEstablished(WebSocketSession session)
             throws Exception {
-    	String userId = (String) session.getHandshakeAttributes().get("user");
+    	String userId = (String) session.getAttributes().get("user");
 //    	System.out.println(userId);
     	if(userId.split(",")[0].equals("c")){
     		webSocketSetcat.add(session);
@@ -65,7 +65,7 @@ public class MyWebSocketHandler implements WebSocketHandler{
     public void afterConnectionClosed(WebSocketSession session,
             CloseStatus closeStatus) throws Exception {
 
-    	String userId = (String) session.getHandshakeAttributes().get("user");
+    	String userId = (String) session.getAttributes().get("user");
     	webSocketSet.remove(userId);
 
     }

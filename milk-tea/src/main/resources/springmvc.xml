@@ -16,6 +16,12 @@
 	<context:component-scan base-package="com.hsys.tea.milktea" use-default-filters="false"><!-- base-package 如果多个，用“,”分隔 -->
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
+	
+	 <!-- 设置静态资源的映射 -->
+	<context:component-scan base-package="com.hsys.tea.milktea.socket"/>
+	
+	<mvc:default-servlet-handler/>
+	
 	<!-- springMVC注解驱动 -->
 	<mvc:annotation-driven>
 	    <mvc:message-converters register-defaults="true">
@@ -37,8 +43,39 @@
         </mvc:message-converters>
 	</mvc:annotation-driven>
 	<!-- websocket处理类 -->
-	<bean id="MessageHandler" class="com.hsys.tea.milktea.websocket.MessageHandler"/>
+<!-- 	<bean id="MessageHandler" class="com.hsys.tea.milktea.websocket.MessageHandler"/>
 	<websocket:handlers>
         <websocket:mapping path="/websocket" handler="MessageHandler"/>
+    </websocket:handlers> -->
+    
+	<!-- websocket处理类 -->
+    <bean id="myHandler" class="com.hsys.tea.milktea.socket.MyWebSocketHandler"/>
+
+    <!-- 握手接口/拦截器 -->
+    <bean id="myInterceptor" class="com.hsys.tea.milktea.socket.HandshakeInterceptor"/>
+
+    <websocket:handlers >
+        <websocket:mapping path="/websocket" handler="myHandler"/>
+        <websocket:handshake-interceptors>
+            <ref bean="myInterceptor"/>
+        </websocket:handshake-interceptors>
     </websocket:handlers>
+
+    <!--  注册 sockJS -->
+    <websocket:handlers>
+        <websocket:mapping path="/sockjs/websocket" handler="myHandler"/>
+        <websocket:handshake-interceptors>
+            <ref bean="myInterceptor"/>
+        </websocket:handshake-interceptors>
+        <websocket:sockjs />
+    </websocket:handlers>   
+    
+    <!-- 配置文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize">
+            <value>5242880</value>
+        </property>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+    
 </beans>
