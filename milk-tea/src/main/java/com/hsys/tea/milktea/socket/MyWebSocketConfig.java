@@ -1,4 +1,4 @@
-package com.hsys.socket;
+package com.hsys.tea.milktea.socket;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
