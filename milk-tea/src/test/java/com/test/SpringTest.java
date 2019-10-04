@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hsys.tea.milktea.user.service.IndexService;
+import com.hsys.tea.milktea.user.service.AddressService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring.xml"})
 public class SpringTest {
 	@Autowired
-	private IndexService is;
+	private AddressService is;
 	
 	@Test
 	public void test1() {

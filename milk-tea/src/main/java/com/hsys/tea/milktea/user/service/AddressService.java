@@ -3,12 +3,16 @@ package com.hsys.tea.milktea.user.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.hsys.tea.milktea.constant.ConfigConstant;
 import com.hsys.tea.milktea.dao.StoreinfoMapper;
@@ -16,10 +20,36 @@ import com.hsys.tea.milktea.entity.Storeinfo;
 
 @Service
 @Transactional
-public class IndexService {
+public class AddressService {
 	
 	@Autowired
 	private StoreinfoMapper sm;
+	
+	/**
+	 * 获取地址选择列表
+	 * @return
+	 */
+	public String getAllAddress() {
+		List<Storeinfo> findAllLists = sm.findAllList();
+		Map<String, List<String>> addressMap = new HashMap<String, List<String>>();
+		Iterator<Storeinfo> StoreinfoIterator = findAllLists.iterator();
+		while(StoreinfoIterator.hasNext()) {
+			Storeinfo storeinfo = StoreinfoIterator.next();
+			String storeAddress = storeinfo.getStoreAddress();
+			String[] targetStrings = storeAddress.split("-");
+			if (addressMap.containsKey(targetStrings[0])) {
+				List<String> list = addressMap.get(targetStrings[0]);
+				if (!list.contains(targetStrings[1])) {
+					list.add(targetStrings[1]);
+				}
+			}else {
+				List<String> list = new ArrayList<String>();
+				list.add (targetStrings[1]);
+				addressMap.put(targetStrings[0], list);
+			}
+		}
+		return JSON.toJSONString(addressMap);
+	}
 	
 	private String getStoreinfos(String Address, String longitude, String latitude) {
 		if (Address == null) {
@@ -42,7 +72,6 @@ public class IndexService {
 				public int compare(Storeinfo o1, Storeinfo o2) {
 					return o1.getDistance().compareTo(o2.getDistance());
 				}
-				
 			});
 			return JSONArray.toJSONString(findCurrentLists);
 		}
@@ -56,7 +85,7 @@ public class IndexService {
 		return getStoreinfos(userAddress, longitude, latitude);
 	}
 	
-	public String getCurrentCityStoreinfos(String longitude, String latitude) {
+	public String getdefaultCityStoreinfos(String longitude, String latitude) {
 		return getStoreinfos(ConfigConstant.defaultAddress, longitude, latitude);
 	}
 	
