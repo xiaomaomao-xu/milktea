@@ -28,7 +28,7 @@ public interface BaseDao<T> {
 	 * @param entity
 	 * @return
 	 */
-	public List<T> findAllList(T entity);
+	public List<T> findAllList();
 	/**
 	 * 插入数据
 	 * @param entity

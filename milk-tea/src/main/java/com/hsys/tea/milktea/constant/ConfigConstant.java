@@ -135,4 +135,9 @@ public class ConfigConstant {
 	 * 线程池的数量
 	 */
 	public static final int threadNum = 20;
+	
+	/**
+	 * 前台默认显示地址
+	 */
+	public static final String defaultAddress = "遵义市";
 }

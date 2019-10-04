@@ -36,8 +36,18 @@ public class Storeinfo extends BaseEntity{
     private String longitude;
 
     private String notice;
+    
+    private String distance;
 
-    public Integer getStoreId() {
+    public String getDistance() {
+		return distance;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
+
+	public Integer getStoreId() {
         return storeId;
     }
 
