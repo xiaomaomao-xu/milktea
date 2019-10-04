@@ -24,6 +24,11 @@
     business_hours, shipping_instruction, delivery_cost, operating_start, takeout_start, 
     enter_time, turnover, latitude, longitude, notice
   </sql>
+  <select id="findAllList" resultMap="BaseResultMap" parameterType="com.hsys.tea.milktea.entity.Storeinfo" >
+    select 
+    <include refid="Base_Column_List" />
+    from storeinfo
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

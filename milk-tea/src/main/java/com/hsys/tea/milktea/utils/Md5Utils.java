@@ -30,7 +30,7 @@ public class Md5Utils {
 			instance = new Md5Utils();
 			local.set(instance);
 		}
-		return null;
+		return local.get();
 	}
 	
 	public static String md5(String password) {	

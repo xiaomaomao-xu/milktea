@@ -38,7 +38,7 @@ public class FileBizUtils {
 			instance = new FileBizUtils();
 			local.set(instance);
 		}
-		return null;
+		return local.get();
 	}
 	
 	public HashMap<String, String> upload(HttpServletRequest req,String uploadPath) {  

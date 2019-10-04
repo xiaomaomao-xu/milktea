@@ -48,7 +48,7 @@ public class SequenceNumberUtils {
 			instance = new SequenceNumberUtils();
 			local.set(instance);
 		}
-		return null;
+		return local.get();
 	}
 	
 	/**
