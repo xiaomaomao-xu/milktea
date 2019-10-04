@@ -2,7 +2,9 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class Commodityinfo {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Commodityinfo extends BaseEntity{
     private Integer commodityId;
 
     private String commodityName;
@@ -33,6 +35,7 @@ public class Commodityinfo {
 
     public void setCommodityId(Integer commodityId) {
         this.commodityId = commodityId;
+        this.id = commodityId;
     }
 
     public String getCommodityName() {

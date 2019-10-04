@@ -1,6 +1,8 @@
 package com.hsys.tea.milktea.entity;
 
-public class Distancemoney {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Distancemoney extends BaseEntity{
     private Integer distanceId;
 
     private Integer distance;
@@ -13,6 +15,7 @@ public class Distancemoney {
 
     public void setDistanceId(Integer distanceId) {
         this.distanceId = distanceId;
+        this.id = distanceId;
     }
 
     public Integer getDistance() {

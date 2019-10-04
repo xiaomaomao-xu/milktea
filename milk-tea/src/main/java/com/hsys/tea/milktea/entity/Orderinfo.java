@@ -2,7 +2,9 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class Orderinfo {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Orderinfo{
     private Long orderId;
 
     private Integer amount;

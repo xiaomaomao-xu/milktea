@@ -2,7 +2,9 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class UserVip {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class UserVip extends BaseEntity{
     private Integer vipId;
 
     private Date createTime;
@@ -17,6 +19,7 @@ public class UserVip {
 
     public void setVipId(Integer vipId) {
         this.vipId = vipId;
+        this.id = vipId;
     }
 
     public Date getCreateTime() {

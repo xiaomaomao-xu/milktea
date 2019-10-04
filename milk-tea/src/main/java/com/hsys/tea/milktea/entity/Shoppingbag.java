@@ -2,7 +2,9 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class Shoppingbag {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Shoppingbag extends BaseEntity{
     private Integer bagId;
 
     private Integer storeId;
@@ -21,6 +23,7 @@ public class Shoppingbag {
 
     public void setBagId(Integer bagId) {
         this.bagId = bagId;
+        this.id = bagId;
     }
 
     public Integer getStoreId() {

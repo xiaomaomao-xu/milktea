@@ -2,7 +2,9 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class Sviptypeinfo {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Sviptypeinfo extends BaseEntity{
     private Integer svipType;
 
     private String svipName;
@@ -19,6 +21,7 @@ public class Sviptypeinfo {
 
     public void setSvipType(Integer svipType) {
         this.svipType = svipType;
+        this.id = svipType;
     }
 
     public String getSvipName() {

@@ -2,7 +2,9 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class Exchangeitem {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Exchangeitem extends BaseEntity{
     private Integer itemId;
 
     private String itemName;
@@ -25,6 +27,7 @@ public class Exchangeitem {
 
     public void setItemId(Integer itemId) {
         this.itemId = itemId;
+        this.id = itemId;
     }
 
     public String getItemName() {

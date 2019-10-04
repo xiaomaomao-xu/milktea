@@ -2,7 +2,9 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class Delivery {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Delivery extends BaseEntity{
     private Integer deliveryId;
 
     private Long orderId;
@@ -23,6 +25,7 @@ public class Delivery {
 
     public void setDeliveryId(Integer deliveryId) {
         this.deliveryId = deliveryId;
+        this.id = deliveryId;
     }
 
     public Long getOrderId() {

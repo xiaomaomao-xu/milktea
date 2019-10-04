@@ -2,7 +2,9 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class Conpontype {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Conpontype extends BaseEntity{
     private Integer conponTypeId;
 
     private String couponName;
@@ -17,6 +19,7 @@ public class Conpontype {
 
     public void setConponTypeId(Integer conponTypeId) {
         this.conponTypeId = conponTypeId;
+        this.id = conponTypeId;
     }
 
     public String getCouponName() {

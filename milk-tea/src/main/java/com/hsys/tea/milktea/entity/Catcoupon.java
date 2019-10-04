@@ -2,8 +2,11 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class Catcoupon {
-    private Integer couponId;
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Catcoupon extends BaseEntity{
+
+	private Integer couponId;
 
     private String couponName;
 
@@ -31,6 +34,7 @@ public class Catcoupon {
 
     public void setCouponId(Integer couponId) {
         this.couponId = couponId;
+        this.id = couponId;
     }
 
     public String getCouponName() {

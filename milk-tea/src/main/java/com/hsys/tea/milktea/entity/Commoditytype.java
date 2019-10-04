@@ -1,6 +1,8 @@
 package com.hsys.tea.milktea.entity;
 
-public class Commoditytype {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Commoditytype extends BaseEntity{
     private Integer typeId;
 
     private String typeName;
@@ -13,6 +15,7 @@ public class Commoditytype {
 
     public void setTypeId(Integer typeId) {
         this.typeId = typeId;
+        this.id = typeId;
     }
 
     public String getTypeName() {

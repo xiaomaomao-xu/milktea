@@ -2,7 +2,9 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class Taskinfo {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Taskinfo extends BaseEntity{
     private Integer taskId;
 
     private String taskName;
@@ -21,6 +23,7 @@ public class Taskinfo {
 
     public void setTaskId(Integer taskId) {
         this.taskId = taskId;
+        this.id = taskId;
     }
 
     public String getTaskName() {

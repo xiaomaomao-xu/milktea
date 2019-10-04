@@ -1,6 +1,8 @@
 package com.hsys.tea.milktea.entity;
 
-public class Shopkeeperinfo {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Shopkeeperinfo extends BaseEntity{
     private Integer shopkeeperId;
 
     private String principal;
@@ -23,6 +25,7 @@ public class Shopkeeperinfo {
 
     public void setShopkeeperId(Integer shopkeeperId) {
         this.shopkeeperId = shopkeeperId;
+        this.id = shopkeeperId;
     }
 
     public String getPrincipal() {

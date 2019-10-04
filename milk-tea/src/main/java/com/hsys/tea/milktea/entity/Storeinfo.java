@@ -2,7 +2,9 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class Storeinfo {
+import com.hsys.tea.milktea.comm.entity.BaseEntity;
+
+public class Storeinfo extends BaseEntity{
     private Integer storeId;
 
     private String storeAccount;
@@ -41,6 +43,7 @@ public class Storeinfo {
 
     public void setStoreId(Integer storeId) {
         this.storeId = storeId;
+        this.id = storeId;
     }
 
     public String getStoreAccount() {
