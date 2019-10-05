@@ -2,30 +2,30 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class Commodityinfo extends BaseEntity{
+public class Commodityinfo {
     private Integer commodityId;
 
     private String commodityName;
 
-    private Integer commodityType;
+    private Integer materialTypeId;
+
+    private Integer commodityPrice;
+
+    private Integer commodityQuantity;
 
     private String commodityLabel;
 
-    private String commodityHobby;
+    private String commodityRemark;
 
-    private Integer goodsState;
+    private Integer commodityState;
 
-    private Date putawayTime;
+    private String materialId;
 
-    private Integer commodityQuantity;
+    private String imgthumb;
 
     private Date createTime;
 
     private Date modifyTime;
-
-    private Integer commodityPrice;
 
     private Integer storeId;
 
@@ -35,7 +35,6 @@ public class Commodityinfo extends BaseEntity{
 
     public void setCommodityId(Integer commodityId) {
         this.commodityId = commodityId;
-        this.id = commodityId;
     }
 
     public String getCommodityName() {
@@ -46,12 +45,28 @@ public class Commodityinfo extends BaseEntity{
         this.commodityName = commodityName == null ? null : commodityName.trim();
     }
 
-    public Integer getCommodityType() {
-        return commodityType;
+    public Integer getMaterialTypeId() {
+        return materialTypeId;
     }
 
-    public void setCommodityType(Integer commodityType) {
-        this.commodityType = commodityType;
+    public void setMaterialTypeId(Integer materialTypeId) {
+        this.materialTypeId = materialTypeId;
+    }
+
+    public Integer getCommodityPrice() {
+        return commodityPrice;
+    }
+
+    public void setCommodityPrice(Integer commodityPrice) {
+        this.commodityPrice = commodityPrice;
+    }
+
+    public Integer getCommodityQuantity() {
+        return commodityQuantity;
+    }
+
+    public void setCommodityQuantity(Integer commodityQuantity) {
+        this.commodityQuantity = commodityQuantity;
     }
 
     public String getCommodityLabel() {
@@ -62,36 +77,36 @@ public class Commodityinfo extends BaseEntity{
         this.commodityLabel = commodityLabel == null ? null : commodityLabel.trim();
     }
 
-    public String getCommodityHobby() {
-        return commodityHobby;
+    public String getCommodityRemark() {
+        return commodityRemark;
     }
 
-    public void setCommodityHobby(String commodityHobby) {
-        this.commodityHobby = commodityHobby == null ? null : commodityHobby.trim();
+    public void setCommodityRemark(String commodityRemark) {
+        this.commodityRemark = commodityRemark == null ? null : commodityRemark.trim();
     }
 
-    public Integer getGoodsState() {
-        return goodsState;
+    public Integer getCommodityState() {
+        return commodityState;
     }
 
-    public void setGoodsState(Integer goodsState) {
-        this.goodsState = goodsState;
+    public void setCommodityState(Integer commodityState) {
+        this.commodityState = commodityState;
     }
 
-    public Date getPutawayTime() {
-        return putawayTime;
+    public String getMaterialId() {
+        return materialId;
     }
 
-    public void setPutawayTime(Date putawayTime) {
-        this.putawayTime = putawayTime;
+    public void setMaterialId(String materialId) {
+        this.materialId = materialId == null ? null : materialId.trim();
     }
 
-    public Integer getCommodityQuantity() {
-        return commodityQuantity;
+    public String getImgthumb() {
+        return imgthumb;
     }
 
-    public void setCommodityQuantity(Integer commodityQuantity) {
-        this.commodityQuantity = commodityQuantity;
+    public void setImgthumb(String imgthumb) {
+        this.imgthumb = imgthumb == null ? null : imgthumb.trim();
     }
 
     public Date getCreateTime() {
@@ -108,14 +123,6 @@ public class Commodityinfo extends BaseEntity{
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
-    }
-
-    public Integer getCommodityPrice() {
-        return commodityPrice;
-    }
-
-    public void setCommodityPrice(Integer commodityPrice) {
-        this.commodityPrice = commodityPrice;
     }
 
     public Integer getStoreId() {

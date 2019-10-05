@@ -9,9 +9,12 @@
     <result column="svip_state" property="svipState" jdbcType="INTEGER" />
     <result column="eff_time" property="effTime" jdbcType="TIMESTAMP" />
     <result column="ept_time" property="eptTime" jdbcType="TIMESTAMP" />
+    <result column="vgrade" property="vgrade" jdbcType="INTEGER" />
+    <result column="svip_type_id" property="svipTypeId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    svip_id, create_time, user_star_empirical, user_id, svip_state, eff_time, ept_time
+    svip_id, create_time, user_star_empirical, user_id, svip_state, eff_time, ept_time, 
+    vgrade, svip_type_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,10 +29,12 @@
   <insert id="insert" parameterType="com.hsys.tea.milktea.entity.StarUserVip" >
     insert into star_user_vip (svip_id, create_time, user_star_empirical, 
       user_id, svip_state, eff_time, 
-      ept_time)
+      ept_time, vgrade, svip_type_id
+      )
     values (#{svipId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{userStarEmpirical,jdbcType=INTEGER}, 
       #{userId,jdbcType=INTEGER}, #{svipState,jdbcType=INTEGER}, #{effTime,jdbcType=TIMESTAMP}, 
-      #{eptTime,jdbcType=TIMESTAMP})
+      #{eptTime,jdbcType=TIMESTAMP}, #{vgrade,jdbcType=INTEGER}, #{svipTypeId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.StarUserVip" >
     insert into star_user_vip
@@ -55,6 +60,12 @@
       <if test="eptTime != null" >
         ept_time,
       </if>
+      <if test="vgrade != null" >
+        vgrade,
+      </if>
+      <if test="svipTypeId != null" >
+        svip_type_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="svipId != null" >
@@ -77,6 +88,12 @@
       </if>
       <if test="eptTime != null" >
         #{eptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vgrade != null" >
+        #{vgrade,jdbcType=INTEGER},
+      </if>
+      <if test="svipTypeId != null" >
+        #{svipTypeId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -101,6 +118,12 @@
       <if test="eptTime != null" >
         ept_time = #{eptTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="vgrade != null" >
+        vgrade = #{vgrade,jdbcType=INTEGER},
+      </if>
+      <if test="svipTypeId != null" >
+        svip_type_id = #{svipTypeId,jdbcType=INTEGER},
+      </if>
     </set>
     where svip_id = #{svipId,jdbcType=INTEGER}
   </update>
@@ -111,7 +134,9 @@
       user_id = #{userId,jdbcType=INTEGER},
       svip_state = #{svipState,jdbcType=INTEGER},
       eff_time = #{effTime,jdbcType=TIMESTAMP},
-      ept_time = #{eptTime,jdbcType=TIMESTAMP}
+      ept_time = #{eptTime,jdbcType=TIMESTAMP},
+      vgrade = #{vgrade,jdbcType=INTEGER},
+      svip_type_id = #{svipTypeId,jdbcType=INTEGER}
     where svip_id = #{svipId,jdbcType=INTEGER}
   </update>
 </mapper>

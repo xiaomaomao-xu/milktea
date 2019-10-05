@@ -18,11 +18,12 @@
     <result column="user_type" property="userType" jdbcType="INTEGER" />
     <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
     <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="blacklist" property="blacklist" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     user_id, user_name, user_phone, user_sex, user_birthday, user_wallet, user_integrals, 
     user_monetary, payment_code, open_id, user_avatar_url, create_time, modify_time, 
-    user_type, user_password, salt
+    user_type, user_password, salt, blacklist
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -40,13 +41,13 @@
       user_integrals, user_monetary, payment_code, 
       open_id, user_avatar_url, create_time, 
       modify_time, user_type, user_password, 
-      salt)
+      salt, blacklist)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
       #{userSex,jdbcType=VARCHAR}, #{userBirthday,jdbcType=TIMESTAMP}, #{userWallet,jdbcType=INTEGER}, 
       #{userIntegrals,jdbcType=INTEGER}, #{userMonetary,jdbcType=INTEGER}, #{paymentCode,jdbcType=VARCHAR}, 
       #{openId,jdbcType=VARCHAR}, #{userAvatarUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{modifyTime,jdbcType=TIMESTAMP}, #{userType,jdbcType=INTEGER}, #{userPassword,jdbcType=VARCHAR}, 
-      #{salt,jdbcType=VARCHAR})
+      #{salt,jdbcType=VARCHAR}, #{blacklist,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Userinfo" >
     insert into userinfo
@@ -99,6 +100,9 @@
       <if test="salt != null" >
         salt,
       </if>
+      <if test="blacklist != null" >
+        blacklist,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -148,6 +152,9 @@
       </if>
       <if test="salt != null" >
         #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="blacklist != null" >
+        #{blacklist,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -199,6 +206,9 @@
       <if test="salt != null" >
         salt = #{salt,jdbcType=VARCHAR},
       </if>
+      <if test="blacklist != null" >
+        blacklist = #{blacklist,jdbcType=INTEGER},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
@@ -218,7 +228,8 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       user_type = #{userType,jdbcType=INTEGER},
       user_password = #{userPassword,jdbcType=VARCHAR},
-      salt = #{salt,jdbcType=VARCHAR}
+      salt = #{salt,jdbcType=VARCHAR},
+      blacklist = #{blacklist,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

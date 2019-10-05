@@ -2,9 +2,7 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class Messagecenter extends BaseEntity{
+public class Messagecenter {
     private Integer messageId;
 
     private String messageContent;
@@ -13,13 +11,14 @@ public class Messagecenter extends BaseEntity{
 
     private Integer userId;
 
+    private Integer tombstone;
+
     public Integer getMessageId() {
         return messageId;
     }
 
     public void setMessageId(Integer messageId) {
         this.messageId = messageId;
-        this.id = messageId;
     }
 
     public String getMessageContent() {
@@ -44,5 +43,13 @@ public class Messagecenter extends BaseEntity{
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getTombstone() {
+        return tombstone;
+    }
+
+    public void setTombstone(Integer tombstone) {
+        this.tombstone = tombstone;
     }
 }

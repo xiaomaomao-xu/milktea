@@ -7,6 +7,7 @@
     <result column="store_password" property="storePassword" jdbcType="VARCHAR" />
     <result column="store_phone" property="storePhone" jdbcType="VARCHAR" />
     <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="storeimage" property="storeimage" jdbcType="VARCHAR" />
     <result column="store_address" property="storeAddress" jdbcType="VARCHAR" />
     <result column="business_hours" property="businessHours" jdbcType="VARCHAR" />
     <result column="shipping_instruction" property="shippingInstruction" jdbcType="VARCHAR" />
@@ -18,17 +19,13 @@
     <result column="latitude" property="latitude" jdbcType="VARCHAR" />
     <result column="longitude" property="longitude" jdbcType="VARCHAR" />
     <result column="notice" property="notice" jdbcType="VARCHAR" />
+    <result column="busyness" property="busyness" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    store_id, store_account, store_password, store_phone, store_name, store_address, 
+    store_id, store_account, store_password, store_phone, store_name, storeimage, store_address, 
     business_hours, shipping_instruction, delivery_cost, operating_start, takeout_start, 
-    enter_time, turnover, latitude, longitude, notice
+    enter_time, turnover, latitude, longitude, notice, busyness
   </sql>
-  <select id="findAllList" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from storeinfo
-  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -41,17 +38,19 @@
   </delete>
   <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Storeinfo" >
     insert into storeinfo (store_id, store_account, store_password, 
-      store_phone, store_name, store_address, 
-      business_hours, shipping_instruction, delivery_cost, 
-      operating_start, takeout_start, enter_time, 
-      turnover, latitude, longitude, 
-      notice)
+      store_phone, store_name, storeimage, 
+      store_address, business_hours, shipping_instruction, 
+      delivery_cost, operating_start, takeout_start, 
+      enter_time, turnover, latitude, 
+      longitude, notice, busyness
+      )
     values (#{storeId,jdbcType=INTEGER}, #{storeAccount,jdbcType=VARCHAR}, #{storePassword,jdbcType=VARCHAR}, 
-      #{storePhone,jdbcType=VARCHAR}, #{storeName,jdbcType=VARCHAR}, #{storeAddress,jdbcType=VARCHAR}, 
-      #{businessHours,jdbcType=VARCHAR}, #{shippingInstruction,jdbcType=VARCHAR}, #{deliveryCost,jdbcType=INTEGER}, 
-      #{operatingStart,jdbcType=INTEGER}, #{takeoutStart,jdbcType=INTEGER}, #{enterTime,jdbcType=TIMESTAMP}, 
-      #{turnover,jdbcType=INTEGER}, #{latitude,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, 
-      #{notice,jdbcType=VARCHAR})
+      #{storePhone,jdbcType=VARCHAR}, #{storeName,jdbcType=VARCHAR}, #{storeimage,jdbcType=VARCHAR}, 
+      #{storeAddress,jdbcType=VARCHAR}, #{businessHours,jdbcType=VARCHAR}, #{shippingInstruction,jdbcType=VARCHAR}, 
+      #{deliveryCost,jdbcType=INTEGER}, #{operatingStart,jdbcType=INTEGER}, #{takeoutStart,jdbcType=INTEGER}, 
+      #{enterTime,jdbcType=TIMESTAMP}, #{turnover,jdbcType=INTEGER}, #{latitude,jdbcType=VARCHAR}, 
+      #{longitude,jdbcType=VARCHAR}, #{notice,jdbcType=VARCHAR}, #{busyness,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Storeinfo" >
     insert into storeinfo
@@ -70,6 +69,9 @@
       </if>
       <if test="storeName != null" >
         store_name,
+      </if>
+      <if test="storeimage != null" >
+        storeimage,
       </if>
       <if test="storeAddress != null" >
         store_address,
@@ -104,6 +106,9 @@
       <if test="notice != null" >
         notice,
       </if>
+      <if test="busyness != null" >
+        busyness,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="storeId != null" >
@@ -120,6 +125,9 @@
       </if>
       <if test="storeName != null" >
         #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeimage != null" >
+        #{storeimage,jdbcType=VARCHAR},
       </if>
       <if test="storeAddress != null" >
         #{storeAddress,jdbcType=VARCHAR},
@@ -154,6 +162,9 @@
       <if test="notice != null" >
         #{notice,jdbcType=VARCHAR},
       </if>
+      <if test="busyness != null" >
+        #{busyness,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.Storeinfo" >
@@ -170,6 +181,9 @@
       </if>
       <if test="storeName != null" >
         store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeimage != null" >
+        storeimage = #{storeimage,jdbcType=VARCHAR},
       </if>
       <if test="storeAddress != null" >
         store_address = #{storeAddress,jdbcType=VARCHAR},
@@ -204,6 +218,9 @@
       <if test="notice != null" >
         notice = #{notice,jdbcType=VARCHAR},
       </if>
+      <if test="busyness != null" >
+        busyness = #{busyness,jdbcType=INTEGER},
+      </if>
     </set>
     where store_id = #{storeId,jdbcType=INTEGER}
   </update>
@@ -213,6 +230,7 @@
       store_password = #{storePassword,jdbcType=VARCHAR},
       store_phone = #{storePhone,jdbcType=VARCHAR},
       store_name = #{storeName,jdbcType=VARCHAR},
+      storeimage = #{storeimage,jdbcType=VARCHAR},
       store_address = #{storeAddress,jdbcType=VARCHAR},
       business_hours = #{businessHours,jdbcType=VARCHAR},
       shipping_instruction = #{shippingInstruction,jdbcType=VARCHAR},
@@ -223,7 +241,8 @@
       turnover = #{turnover,jdbcType=INTEGER},
       latitude = #{latitude,jdbcType=VARCHAR},
       longitude = #{longitude,jdbcType=VARCHAR},
-      notice = #{notice,jdbcType=VARCHAR}
+      notice = #{notice,jdbcType=VARCHAR},
+      busyness = #{busyness,jdbcType=INTEGER}
     where store_id = #{storeId,jdbcType=INTEGER}
   </update>
 </mapper>

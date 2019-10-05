@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.GoodsorderMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Goodsorder" >
+    <id column="ordercommodity_id" property="ordercommodityId" jdbcType="INTEGER" />
+    <result column="commodity" property="commodity" jdbcType="INTEGER" />
+    <result column="material_id" property="materialId" jdbcType="VARCHAR" />
+    <result column="imgthumb" property="imgthumb" jdbcType="VARCHAR" />
+    <result column="commodity_name" property="commodityName" jdbcType="VARCHAR" />
+    <result column="commodity_price" property="commodityPrice" jdbcType="INTEGER" />
+    <result column="buy_amount" property="buyAmount" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="material_remark" property="materialRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ordercommodity_id, commodity, material_id, imgthumb, commodity_name, commodity_price, 
+    buy_amount, order_id, create_time, material_remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goodsorder
+    where ordercommodity_id = #{ordercommodityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goodsorder
+    where ordercommodity_id = #{ordercommodityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Goodsorder" >
+    insert into goodsorder (ordercommodity_id, commodity, material_id, 
+      imgthumb, commodity_name, commodity_price, 
+      buy_amount, order_id, create_time, 
+      material_remark)
+    values (#{ordercommodityId,jdbcType=INTEGER}, #{commodity,jdbcType=INTEGER}, #{materialId,jdbcType=VARCHAR}, 
+      #{imgthumb,jdbcType=VARCHAR}, #{commodityName,jdbcType=VARCHAR}, #{commodityPrice,jdbcType=INTEGER}, 
+      #{buyAmount,jdbcType=INTEGER}, #{orderId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{materialRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Goodsorder" >
+    insert into goodsorder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ordercommodityId != null" >
+        ordercommodity_id,
+      </if>
+      <if test="commodity != null" >
+        commodity,
+      </if>
+      <if test="materialId != null" >
+        material_id,
+      </if>
+      <if test="imgthumb != null" >
+        imgthumb,
+      </if>
+      <if test="commodityName != null" >
+        commodity_name,
+      </if>
+      <if test="commodityPrice != null" >
+        commodity_price,
+      </if>
+      <if test="buyAmount != null" >
+        buy_amount,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="materialRemark != null" >
+        material_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ordercommodityId != null" >
+        #{ordercommodityId,jdbcType=INTEGER},
+      </if>
+      <if test="commodity != null" >
+        #{commodity,jdbcType=INTEGER},
+      </if>
+      <if test="materialId != null" >
+        #{materialId,jdbcType=VARCHAR},
+      </if>
+      <if test="imgthumb != null" >
+        #{imgthumb,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityName != null" >
+        #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPrice != null" >
+        #{commodityPrice,jdbcType=INTEGER},
+      </if>
+      <if test="buyAmount != null" >
+        #{buyAmount,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="materialRemark != null" >
+        #{materialRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.Goodsorder" >
+    update goodsorder
+    <set >
+      <if test="commodity != null" >
+        commodity = #{commodity,jdbcType=INTEGER},
+      </if>
+      <if test="materialId != null" >
+        material_id = #{materialId,jdbcType=VARCHAR},
+      </if>
+      <if test="imgthumb != null" >
+        imgthumb = #{imgthumb,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityName != null" >
+        commodity_name = #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPrice != null" >
+        commodity_price = #{commodityPrice,jdbcType=INTEGER},
+      </if>
+      <if test="buyAmount != null" >
+        buy_amount = #{buyAmount,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="materialRemark != null" >
+        material_remark = #{materialRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ordercommodity_id = #{ordercommodityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Goodsorder" >
+    update goodsorder
+    set commodity = #{commodity,jdbcType=INTEGER},
+      material_id = #{materialId,jdbcType=VARCHAR},
+      imgthumb = #{imgthumb,jdbcType=VARCHAR},
+      commodity_name = #{commodityName,jdbcType=VARCHAR},
+      commodity_price = #{commodityPrice,jdbcType=INTEGER},
+      buy_amount = #{buyAmount,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      material_remark = #{materialRemark,jdbcType=VARCHAR}
+    where ordercommodity_id = #{ordercommodityId,jdbcType=INTEGER}
+  </update>
+</mapper>

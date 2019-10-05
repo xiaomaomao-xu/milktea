@@ -8,9 +8,10 @@
     <result column="expense_time" property="expenseTime" jdbcType="TIMESTAMP" />
     <result column="expense_money" property="expenseMoney" jdbcType="INTEGER" />
     <result column="payment_type" property="paymentType" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    expense_id, user_id, order_id, expense_time, expense_money, payment_type
+    expense_id, user_id, order_id, expense_time, expense_money, payment_type, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,11 +25,11 @@
   </delete>
   <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Expensecalendar" >
     insert into expensecalendar (expense_id, user_id, order_id, 
-      expense_time, expense_money, payment_type
-      )
+      expense_time, expense_money, payment_type, 
+      remark)
     values (#{expenseId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderId,jdbcType=BIGINT}, 
-      #{expenseTime,jdbcType=TIMESTAMP}, #{expenseMoney,jdbcType=INTEGER}, #{paymentType,jdbcType=INTEGER}
-      )
+      #{expenseTime,jdbcType=TIMESTAMP}, #{expenseMoney,jdbcType=INTEGER}, #{paymentType,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Expensecalendar" >
     insert into expensecalendar
@@ -51,6 +52,9 @@
       <if test="paymentType != null" >
         payment_type,
       </if>
+      <if test="remark != null" >
+        remark,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="expenseId != null" >
@@ -70,6 +74,9 @@
       </if>
       <if test="paymentType != null" >
         #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -91,6 +98,9 @@
       <if test="paymentType != null" >
         payment_type = #{paymentType,jdbcType=INTEGER},
       </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
     </set>
     where expense_id = #{expenseId,jdbcType=INTEGER}
   </update>
@@ -100,7 +110,8 @@
       order_id = #{orderId,jdbcType=BIGINT},
       expense_time = #{expenseTime,jdbcType=TIMESTAMP},
       expense_money = #{expenseMoney,jdbcType=INTEGER},
-      payment_type = #{paymentType,jdbcType=INTEGER}
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
     where expense_id = #{expenseId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,36 +1,55 @@
 package com.hsys.tea.milktea.entity;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
+import java.util.Date;
 
-public class Commoditytype extends BaseEntity{
-    private Integer typeId;
+public class Commoditytype {
+    private Integer materialTypeId;
 
-    private String typeName;
+    private String materialTypeName;
 
-    private String typeRemark;
+    private String materialTypeRemark;
 
-    public Integer getTypeId() {
-        return typeId;
+    private Integer storeId;
+
+    private Date createTime;
+
+    public Integer getMaterialTypeId() {
+        return materialTypeId;
     }
 
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
-        this.id = typeId;
+    public void setMaterialTypeId(Integer materialTypeId) {
+        this.materialTypeId = materialTypeId;
     }
 
-    public String getTypeName() {
-        return typeName;
+    public String getMaterialTypeName() {
+        return materialTypeName;
     }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName == null ? null : typeName.trim();
+    public void setMaterialTypeName(String materialTypeName) {
+        this.materialTypeName = materialTypeName == null ? null : materialTypeName.trim();
     }
 
-    public String getTypeRemark() {
-        return typeRemark;
+    public String getMaterialTypeRemark() {
+        return materialTypeRemark;
     }
 
-    public void setTypeRemark(String typeRemark) {
-        this.typeRemark = typeRemark == null ? null : typeRemark.trim();
+    public void setMaterialTypeRemark(String materialTypeRemark) {
+        this.materialTypeRemark = materialTypeRemark == null ? null : materialTypeRemark.trim();
+    }
+
+    public Integer getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Integer storeId) {
+        this.storeId = storeId;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

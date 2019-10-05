@@ -2,10 +2,10 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class Exchangeitem extends BaseEntity{
+public class Exchangeitem {
     private Integer itemId;
+
+    private String itemImg;
 
     private String itemName;
 
@@ -27,7 +27,14 @@ public class Exchangeitem extends BaseEntity{
 
     public void setItemId(Integer itemId) {
         this.itemId = itemId;
-        this.id = itemId;
+    }
+
+    public String getItemImg() {
+        return itemImg;
+    }
+
+    public void setItemImg(String itemImg) {
+        this.itemImg = itemImg == null ? null : itemImg.trim();
     }
 
     public String getItemName() {

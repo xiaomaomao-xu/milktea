@@ -2,9 +2,7 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class Shippingaddressinfo extends BaseEntity{
+public class Shippingaddressinfo {
     private Integer addressId;
 
     private Integer userId;
@@ -33,7 +31,6 @@ public class Shippingaddressinfo extends BaseEntity{
 
     public void setAddressId(Integer addressId) {
         this.addressId = addressId;
-        this.id = addressId;
     }
 
     public Integer getUserId() {

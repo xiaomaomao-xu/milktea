@@ -4,20 +4,22 @@
   <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Commodityinfo" >
     <id column="commodity_id" property="commodityId" jdbcType="INTEGER" />
     <result column="commodity_name" property="commodityName" jdbcType="VARCHAR" />
-    <result column="commodity_type" property="commodityType" jdbcType="INTEGER" />
-    <result column="commodity_label" property="commodityLabel" jdbcType="VARCHAR" />
-    <result column="commodity_hobby" property="commodityHobby" jdbcType="VARCHAR" />
-    <result column="goods_state" property="goodsState" jdbcType="INTEGER" />
-    <result column="putaway_time" property="putawayTime" jdbcType="TIMESTAMP" />
+    <result column="material_type_id" property="materialTypeId" jdbcType="INTEGER" />
+    <result column="commodity_price" property="commodityPrice" jdbcType="INTEGER" />
     <result column="commodity_quantity" property="commodityQuantity" jdbcType="INTEGER" />
+    <result column="commodity_label" property="commodityLabel" jdbcType="VARCHAR" />
+    <result column="commodity_remark" property="commodityRemark" jdbcType="VARCHAR" />
+    <result column="commodity_state" property="commodityState" jdbcType="INTEGER" />
+    <result column="material_id" property="materialId" jdbcType="VARCHAR" />
+    <result column="imgthumb" property="imgthumb" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
-    <result column="commodity_price" property="commodityPrice" jdbcType="INTEGER" />
     <result column="store_id" property="storeId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    commodity_id, commodity_name, commodity_type, commodity_label, commodity_hobby, goods_state, 
-    putaway_time, commodity_quantity, create_time, modify_time, commodity_price, store_id
+    commodity_id, commodity_name, material_type_id, commodity_price, commodity_quantity, 
+    commodity_label, commodity_remark, commodity_state, material_id, imgthumb, create_time, 
+    modify_time, store_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -30,16 +32,16 @@
     where commodity_id = #{commodityId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Commodityinfo" >
-    insert into commodityinfo (commodity_id, commodity_name, commodity_type, 
-      commodity_label, commodity_hobby, goods_state, 
-      putaway_time, commodity_quantity, create_time, 
-      modify_time, commodity_price, store_id
-      )
-    values (#{commodityId,jdbcType=INTEGER}, #{commodityName,jdbcType=VARCHAR}, #{commodityType,jdbcType=INTEGER}, 
-      #{commodityLabel,jdbcType=VARCHAR}, #{commodityHobby,jdbcType=VARCHAR}, #{goodsState,jdbcType=INTEGER}, 
-      #{putawayTime,jdbcType=TIMESTAMP}, #{commodityQuantity,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{commodityPrice,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}
-      )
+    insert into commodityinfo (commodity_id, commodity_name, material_type_id, 
+      commodity_price, commodity_quantity, commodity_label, 
+      commodity_remark, commodity_state, material_id, 
+      imgthumb, create_time, modify_time, 
+      store_id)
+    values (#{commodityId,jdbcType=INTEGER}, #{commodityName,jdbcType=VARCHAR}, #{materialTypeId,jdbcType=INTEGER}, 
+      #{commodityPrice,jdbcType=INTEGER}, #{commodityQuantity,jdbcType=INTEGER}, #{commodityLabel,jdbcType=VARCHAR}, 
+      #{commodityRemark,jdbcType=VARCHAR}, #{commodityState,jdbcType=INTEGER}, #{materialId,jdbcType=VARCHAR}, 
+      #{imgthumb,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{storeId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Commodityinfo" >
     insert into commodityinfo
@@ -50,32 +52,35 @@
       <if test="commodityName != null" >
         commodity_name,
       </if>
-      <if test="commodityType != null" >
-        commodity_type,
+      <if test="materialTypeId != null" >
+        material_type_id,
+      </if>
+      <if test="commodityPrice != null" >
+        commodity_price,
+      </if>
+      <if test="commodityQuantity != null" >
+        commodity_quantity,
       </if>
       <if test="commodityLabel != null" >
         commodity_label,
       </if>
-      <if test="commodityHobby != null" >
-        commodity_hobby,
+      <if test="commodityRemark != null" >
+        commodity_remark,
       </if>
-      <if test="goodsState != null" >
-        goods_state,
+      <if test="commodityState != null" >
+        commodity_state,
       </if>
-      <if test="putawayTime != null" >
-        putaway_time,
+      <if test="materialId != null" >
+        material_id,
       </if>
-      <if test="commodityQuantity != null" >
-        commodity_quantity,
+      <if test="imgthumb != null" >
+        imgthumb,
       </if>
       <if test="createTime != null" >
         create_time,
       </if>
       <if test="modifyTime != null" >
         modify_time,
-      </if>
-      <if test="commodityPrice != null" >
-        commodity_price,
       </if>
       <if test="storeId != null" >
         store_id,
@@ -88,32 +93,35 @@
       <if test="commodityName != null" >
         #{commodityName,jdbcType=VARCHAR},
       </if>
-      <if test="commodityType != null" >
-        #{commodityType,jdbcType=INTEGER},
+      <if test="materialTypeId != null" >
+        #{materialTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityPrice != null" >
+        #{commodityPrice,jdbcType=INTEGER},
+      </if>
+      <if test="commodityQuantity != null" >
+        #{commodityQuantity,jdbcType=INTEGER},
       </if>
       <if test="commodityLabel != null" >
         #{commodityLabel,jdbcType=VARCHAR},
       </if>
-      <if test="commodityHobby != null" >
-        #{commodityHobby,jdbcType=VARCHAR},
+      <if test="commodityRemark != null" >
+        #{commodityRemark,jdbcType=VARCHAR},
       </if>
-      <if test="goodsState != null" >
-        #{goodsState,jdbcType=INTEGER},
+      <if test="commodityState != null" >
+        #{commodityState,jdbcType=INTEGER},
       </if>
-      <if test="putawayTime != null" >
-        #{putawayTime,jdbcType=TIMESTAMP},
+      <if test="materialId != null" >
+        #{materialId,jdbcType=VARCHAR},
       </if>
-      <if test="commodityQuantity != null" >
-        #{commodityQuantity,jdbcType=INTEGER},
+      <if test="imgthumb != null" >
+        #{imgthumb,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="modifyTime != null" >
         #{modifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="commodityPrice != null" >
-        #{commodityPrice,jdbcType=INTEGER},
       </if>
       <if test="storeId != null" >
         #{storeId,jdbcType=INTEGER},
@@ -126,32 +134,35 @@
       <if test="commodityName != null" >
         commodity_name = #{commodityName,jdbcType=VARCHAR},
       </if>
-      <if test="commodityType != null" >
-        commodity_type = #{commodityType,jdbcType=INTEGER},
+      <if test="materialTypeId != null" >
+        material_type_id = #{materialTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityPrice != null" >
+        commodity_price = #{commodityPrice,jdbcType=INTEGER},
+      </if>
+      <if test="commodityQuantity != null" >
+        commodity_quantity = #{commodityQuantity,jdbcType=INTEGER},
       </if>
       <if test="commodityLabel != null" >
         commodity_label = #{commodityLabel,jdbcType=VARCHAR},
       </if>
-      <if test="commodityHobby != null" >
-        commodity_hobby = #{commodityHobby,jdbcType=VARCHAR},
+      <if test="commodityRemark != null" >
+        commodity_remark = #{commodityRemark,jdbcType=VARCHAR},
       </if>
-      <if test="goodsState != null" >
-        goods_state = #{goodsState,jdbcType=INTEGER},
+      <if test="commodityState != null" >
+        commodity_state = #{commodityState,jdbcType=INTEGER},
       </if>
-      <if test="putawayTime != null" >
-        putaway_time = #{putawayTime,jdbcType=TIMESTAMP},
+      <if test="materialId != null" >
+        material_id = #{materialId,jdbcType=VARCHAR},
       </if>
-      <if test="commodityQuantity != null" >
-        commodity_quantity = #{commodityQuantity,jdbcType=INTEGER},
+      <if test="imgthumb != null" >
+        imgthumb = #{imgthumb,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="modifyTime != null" >
         modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="commodityPrice != null" >
-        commodity_price = #{commodityPrice,jdbcType=INTEGER},
       </if>
       <if test="storeId != null" >
         store_id = #{storeId,jdbcType=INTEGER},
@@ -162,15 +173,16 @@
   <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Commodityinfo" >
     update commodityinfo
     set commodity_name = #{commodityName,jdbcType=VARCHAR},
-      commodity_type = #{commodityType,jdbcType=INTEGER},
-      commodity_label = #{commodityLabel,jdbcType=VARCHAR},
-      commodity_hobby = #{commodityHobby,jdbcType=VARCHAR},
-      goods_state = #{goodsState,jdbcType=INTEGER},
-      putaway_time = #{putawayTime,jdbcType=TIMESTAMP},
+      material_type_id = #{materialTypeId,jdbcType=INTEGER},
+      commodity_price = #{commodityPrice,jdbcType=INTEGER},
       commodity_quantity = #{commodityQuantity,jdbcType=INTEGER},
+      commodity_label = #{commodityLabel,jdbcType=VARCHAR},
+      commodity_remark = #{commodityRemark,jdbcType=VARCHAR},
+      commodity_state = #{commodityState,jdbcType=INTEGER},
+      material_id = #{materialId,jdbcType=VARCHAR},
+      imgthumb = #{imgthumb,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      commodity_price = #{commodityPrice,jdbcType=INTEGER},
       store_id = #{storeId,jdbcType=INTEGER}
     where commodity_id = #{commodityId,jdbcType=INTEGER}
   </update>

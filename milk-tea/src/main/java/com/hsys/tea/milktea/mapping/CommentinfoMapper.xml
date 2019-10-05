@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.CommentinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Commentinfo" >
+    <id column="comment_id" property="commentId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="comment_state" property="commentState" jdbcType="INTEGER" />
+    <result column="comment_label" property="commentLabel" jdbcType="VARCHAR" />
+    <result column="comment_remark" property="commentRemark" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP" />
+    <result column="comment_img" property="commentImg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    comment_id, order_id, comment_state, comment_label, comment_remark, user_id, store_id, 
+    comment_time, comment_img
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from commentinfo
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from commentinfo
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Commentinfo" >
+    insert into commentinfo (comment_id, order_id, comment_state, 
+      comment_label, comment_remark, user_id, 
+      store_id, comment_time, comment_img
+      )
+    values (#{commentId,jdbcType=INTEGER}, #{orderId,jdbcType=BIGINT}, #{commentState,jdbcType=INTEGER}, 
+      #{commentLabel,jdbcType=VARCHAR}, #{commentRemark,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{storeId,jdbcType=INTEGER}, #{commentTime,jdbcType=TIMESTAMP}, #{commentImg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Commentinfo" >
+    insert into commentinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="commentState != null" >
+        comment_state,
+      </if>
+      <if test="commentLabel != null" >
+        comment_label,
+      </if>
+      <if test="commentRemark != null" >
+        comment_remark,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="commentTime != null" >
+        comment_time,
+      </if>
+      <if test="commentImg != null" >
+        comment_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="commentState != null" >
+        #{commentState,jdbcType=INTEGER},
+      </if>
+      <if test="commentLabel != null" >
+        #{commentLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="commentRemark != null" >
+        #{commentRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="commentTime != null" >
+        #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentImg != null" >
+        #{commentImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.Commentinfo" >
+    update commentinfo
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="commentState != null" >
+        comment_state = #{commentState,jdbcType=INTEGER},
+      </if>
+      <if test="commentLabel != null" >
+        comment_label = #{commentLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="commentRemark != null" >
+        comment_remark = #{commentRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="commentTime != null" >
+        comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentImg != null" >
+        comment_img = #{commentImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Commentinfo" >
+    update commentinfo
+    set order_id = #{orderId,jdbcType=BIGINT},
+      comment_state = #{commentState,jdbcType=INTEGER},
+      comment_label = #{commentLabel,jdbcType=VARCHAR},
+      comment_remark = #{commentRemark,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER},
+      comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      comment_img = #{commentImg,jdbcType=VARCHAR}
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+</mapper>

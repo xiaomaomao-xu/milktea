@@ -2,13 +2,12 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class Catcoupon extends BaseEntity{
-
-	private Integer couponId;
+public class Catcoupon {
+    private Integer couponId;
 
     private String couponName;
+
+    private String couponImg;
 
     private Integer couponState;
 
@@ -26,7 +25,9 @@ public class Catcoupon extends BaseEntity{
 
     private String couponRemark;
 
-    private Integer couponType;
+    private Integer conponTypeId;
+
+    private Integer ecoupon;
 
     public Integer getCouponId() {
         return couponId;
@@ -34,7 +35,6 @@ public class Catcoupon extends BaseEntity{
 
     public void setCouponId(Integer couponId) {
         this.couponId = couponId;
-        this.id = couponId;
     }
 
     public String getCouponName() {
@@ -43,6 +43,14 @@ public class Catcoupon extends BaseEntity{
 
     public void setCouponName(String couponName) {
         this.couponName = couponName == null ? null : couponName.trim();
+    }
+
+    public String getCouponImg() {
+        return couponImg;
+    }
+
+    public void setCouponImg(String couponImg) {
+        this.couponImg = couponImg == null ? null : couponImg.trim();
     }
 
     public Integer getCouponState() {
@@ -109,11 +117,19 @@ public class Catcoupon extends BaseEntity{
         this.couponRemark = couponRemark == null ? null : couponRemark.trim();
     }
 
-    public Integer getCouponType() {
-        return couponType;
+    public Integer getConponTypeId() {
+        return conponTypeId;
     }
 
-    public void setCouponType(Integer couponType) {
-        this.couponType = couponType;
+    public void setConponTypeId(Integer conponTypeId) {
+        this.conponTypeId = conponTypeId;
+    }
+
+    public Integer getEcoupon() {
+        return ecoupon;
+    }
+
+    public void setEcoupon(Integer ecoupon) {
+        this.ecoupon = ecoupon;
     }
 }

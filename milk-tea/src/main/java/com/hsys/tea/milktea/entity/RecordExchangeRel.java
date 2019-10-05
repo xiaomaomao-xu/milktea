@@ -2,9 +2,7 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class RecordExchangeRel extends BaseEntity{
+public class RecordExchangeRel {
     private Integer relId;
 
     private Date createTime;
@@ -19,7 +17,6 @@ public class RecordExchangeRel extends BaseEntity{
 
     public void setRelId(Integer relId) {
         this.relId = relId;
-        this.id = relId;
     }
 
     public Date getCreateTime() {

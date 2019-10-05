@@ -6,9 +6,10 @@
     <result column="message_content" property="messageContent" jdbcType="VARCHAR" />
     <result column="message_time" property="messageTime" jdbcType="TIMESTAMP" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="tombstone" property="tombstone" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    message_id, message_content, message_time, user_id
+    message_id, message_content, message_time, user_id, tombstone
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Messagecenter" >
     insert into messagecenter (message_id, message_content, message_time, 
-      user_id)
+      user_id, tombstone)
     values (#{messageId,jdbcType=INTEGER}, #{messageContent,jdbcType=VARCHAR}, #{messageTime,jdbcType=TIMESTAMP}, 
-      #{userId,jdbcType=INTEGER})
+      #{userId,jdbcType=INTEGER}, #{tombstone,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Messagecenter" >
     insert into messagecenter
@@ -41,6 +42,9 @@
       <if test="userId != null" >
         user_id,
       </if>
+      <if test="tombstone != null" >
+        tombstone,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="messageId != null" >
@@ -54,6 +58,9 @@
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="tombstone != null" >
+        #{tombstone,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="tombstone != null" >
+        tombstone = #{tombstone,jdbcType=INTEGER},
+      </if>
     </set>
     where message_id = #{messageId,jdbcType=INTEGER}
   </update>
@@ -76,7 +86,8 @@
     update messagecenter
     set message_content = #{messageContent,jdbcType=VARCHAR},
       message_time = #{messageTime,jdbcType=TIMESTAMP},
-      user_id = #{userId,jdbcType=INTEGER}
+      user_id = #{userId,jdbcType=INTEGER},
+      tombstone = #{tombstone,jdbcType=INTEGER}
     where message_id = #{messageId,jdbcType=INTEGER}
   </update>
 </mapper>

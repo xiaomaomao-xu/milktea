@@ -2,28 +2,30 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class Orderdetailinfo{
-    private Long orderDetailId;
+public class Orderdetailinfo {
+    private Integer orderDetailId;
 
     private Long orderId;
 
-    private Date createTime;
+    private Integer userId;
 
-    private Integer offeringId;
+    private Integer storeId;
 
-    private Integer offeringNum;
-
-    private String address;
+    private String materialId;
 
     private Integer addressId;
 
+    private Date orderTime;
+
     private String remark;
 
-    public Long getOrderDetailId() {
+    private Date createTime;
+
+    public Integer getOrderDetailId() {
         return orderDetailId;
     }
 
-    public void setOrderDetailId(Long orderDetailId) {
+    public void setOrderDetailId(Integer orderDetailId) {
         this.orderDetailId = orderDetailId;
     }
 
@@ -35,36 +37,28 @@ public class Orderdetailinfo{
         this.orderId = orderId;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getOfferingId() {
-        return offeringId;
+    public Integer getStoreId() {
+        return storeId;
     }
 
-    public void setOfferingId(Integer offeringId) {
-        this.offeringId = offeringId;
+    public void setStoreId(Integer storeId) {
+        this.storeId = storeId;
     }
 
-    public Integer getOfferingNum() {
-        return offeringNum;
+    public String getMaterialId() {
+        return materialId;
     }
 
-    public void setOfferingNum(Integer offeringNum) {
-        this.offeringNum = offeringNum;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public void setMaterialId(String materialId) {
+        this.materialId = materialId == null ? null : materialId.trim();
     }
 
     public Integer getAddressId() {
@@ -75,11 +69,27 @@ public class Orderdetailinfo{
         this.addressId = addressId;
     }
 
+    public Date getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
+    }
+
     public String getRemark() {
         return remark;
     }
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

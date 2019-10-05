@@ -4,13 +4,17 @@
   <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Shoppingbag" >
     <id column="bag_id" property="bagId" jdbcType="INTEGER" />
     <result column="store_id" property="storeId" jdbcType="INTEGER" />
-    <result column="commodity_id" property="commodityId" jdbcType="INTEGER" />
+    <result column="scommodity_id" property="scommodityId" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="commodity_qantity" property="commodityQantity" jdbcType="INTEGER" />
+    <result column="material_id" property="materialId" jdbcType="VARCHAR" />
+    <result column="scommodity_price" property="scommodityPrice" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="blacklist" property="blacklist" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    bag_id, store_id, commodity_id, user_id, commodity_qantity, create_time
+    bag_id, store_id, scommodity_id, user_id, commodity_qantity, material_id, scommodity_price, 
+    create_time, blacklist
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -23,11 +27,13 @@
     where bag_id = #{bagId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Shoppingbag" >
-    insert into shoppingbag (bag_id, store_id, commodity_id, 
-      user_id, commodity_qantity, create_time
+    insert into shoppingbag (bag_id, store_id, scommodity_id, 
+      user_id, commodity_qantity, material_id, 
+      scommodity_price, create_time, blacklist
       )
-    values (#{bagId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, 
-      #{userId,jdbcType=INTEGER}, #{commodityQantity,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+    values (#{bagId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{scommodityId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{commodityQantity,jdbcType=INTEGER}, #{materialId,jdbcType=VARCHAR}, 
+      #{scommodityPrice,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{blacklist,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Shoppingbag" >
@@ -39,8 +45,8 @@
       <if test="storeId != null" >
         store_id,
       </if>
-      <if test="commodityId != null" >
-        commodity_id,
+      <if test="scommodityId != null" >
+        scommodity_id,
       </if>
       <if test="userId != null" >
         user_id,
@@ -48,8 +54,17 @@
       <if test="commodityQantity != null" >
         commodity_qantity,
       </if>
+      <if test="materialId != null" >
+        material_id,
+      </if>
+      <if test="scommodityPrice != null" >
+        scommodity_price,
+      </if>
       <if test="createTime != null" >
         create_time,
+      </if>
+      <if test="blacklist != null" >
+        blacklist,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -59,8 +74,8 @@
       <if test="storeId != null" >
         #{storeId,jdbcType=INTEGER},
       </if>
-      <if test="commodityId != null" >
-        #{commodityId,jdbcType=INTEGER},
+      <if test="scommodityId != null" >
+        #{scommodityId,jdbcType=INTEGER},
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
@@ -68,8 +83,17 @@
       <if test="commodityQantity != null" >
         #{commodityQantity,jdbcType=INTEGER},
       </if>
+      <if test="materialId != null" >
+        #{materialId,jdbcType=VARCHAR},
+      </if>
+      <if test="scommodityPrice != null" >
+        #{scommodityPrice,jdbcType=INTEGER},
+      </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blacklist != null" >
+        #{blacklist,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -79,8 +103,8 @@
       <if test="storeId != null" >
         store_id = #{storeId,jdbcType=INTEGER},
       </if>
-      <if test="commodityId != null" >
-        commodity_id = #{commodityId,jdbcType=INTEGER},
+      <if test="scommodityId != null" >
+        scommodity_id = #{scommodityId,jdbcType=INTEGER},
       </if>
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
@@ -88,8 +112,17 @@
       <if test="commodityQantity != null" >
         commodity_qantity = #{commodityQantity,jdbcType=INTEGER},
       </if>
+      <if test="materialId != null" >
+        material_id = #{materialId,jdbcType=VARCHAR},
+      </if>
+      <if test="scommodityPrice != null" >
+        scommodity_price = #{scommodityPrice,jdbcType=INTEGER},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blacklist != null" >
+        blacklist = #{blacklist,jdbcType=INTEGER},
       </if>
     </set>
     where bag_id = #{bagId,jdbcType=INTEGER}
@@ -97,10 +130,13 @@
   <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Shoppingbag" >
     update shoppingbag
     set store_id = #{storeId,jdbcType=INTEGER},
-      commodity_id = #{commodityId,jdbcType=INTEGER},
+      scommodity_id = #{scommodityId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
       commodity_qantity = #{commodityQantity,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      material_id = #{materialId,jdbcType=VARCHAR},
+      scommodity_price = #{scommodityPrice,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      blacklist = #{blacklist,jdbcType=INTEGER}
     where bag_id = #{bagId,jdbcType=INTEGER}
   </update>
 </mapper>

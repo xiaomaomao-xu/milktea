@@ -2,9 +2,7 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class Userinfo extends BaseEntity{
+public class Userinfo {
     private Integer userId;
 
     private String userName;
@@ -37,13 +35,14 @@ public class Userinfo extends BaseEntity{
 
     private String salt;
 
+    private Integer blacklist;
+
     public Integer getUserId() {
         return userId;
     }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-        this.id = userId;
     }
 
     public String getUserName() {
@@ -164,5 +163,13 @@ public class Userinfo extends BaseEntity{
 
     public void setSalt(String salt) {
         this.salt = salt == null ? null : salt.trim();
+    }
+
+    public Integer getBlacklist() {
+        return blacklist;
+    }
+
+    public void setBlacklist(Integer blacklist) {
+        this.blacklist = blacklist;
     }
 }

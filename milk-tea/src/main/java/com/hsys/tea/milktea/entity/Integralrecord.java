@@ -2,9 +2,7 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class Integralrecord extends BaseEntity{
+public class Integralrecord {
     private Integer recordId;
 
     private String recordExplain;
@@ -21,7 +19,6 @@ public class Integralrecord extends BaseEntity{
 
     public void setRecordId(Integer recordId) {
         this.recordId = recordId;
-        this.id = recordId;
     }
 
     public String getRecordExplain() {

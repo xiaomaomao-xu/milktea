@@ -1,8 +1,6 @@
 package com.hsys.tea.milktea.entity;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class Taskcenter extends BaseEntity{
+public class Taskcenter {
     private Integer centerId;
 
     private Integer userId;
@@ -17,7 +15,6 @@ public class Taskcenter extends BaseEntity{
 
     public void setCenterId(Integer centerId) {
         this.centerId = centerId;
-        this.id = centerId;
     }
 
     public Integer getUserId() {

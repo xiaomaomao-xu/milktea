@@ -1,8 +1,6 @@
 package com.hsys.tea.milktea.entity;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class Shopkeeperinfo extends BaseEntity{
+public class Shopkeeperinfo {
     private Integer shopkeeperId;
 
     private String principal;
@@ -15,9 +13,13 @@ public class Shopkeeperinfo extends BaseEntity{
 
     private String idnumber;
 
-    private String idcaidurl;
+    private String idcaidurlfront;
+
+    private String idcaidurlreverse;
 
     private String openId;
+
+    private String remark;
 
     public Integer getShopkeeperId() {
         return shopkeeperId;
@@ -25,7 +27,6 @@ public class Shopkeeperinfo extends BaseEntity{
 
     public void setShopkeeperId(Integer shopkeeperId) {
         this.shopkeeperId = shopkeeperId;
-        this.id = shopkeeperId;
     }
 
     public String getPrincipal() {
@@ -68,12 +69,20 @@ public class Shopkeeperinfo extends BaseEntity{
         this.idnumber = idnumber == null ? null : idnumber.trim();
     }
 
-    public String getIdcaidurl() {
-        return idcaidurl;
+    public String getIdcaidurlfront() {
+        return idcaidurlfront;
     }
 
-    public void setIdcaidurl(String idcaidurl) {
-        this.idcaidurl = idcaidurl == null ? null : idcaidurl.trim();
+    public void setIdcaidurlfront(String idcaidurlfront) {
+        this.idcaidurlfront = idcaidurlfront == null ? null : idcaidurlfront.trim();
+    }
+
+    public String getIdcaidurlreverse() {
+        return idcaidurlreverse;
+    }
+
+    public void setIdcaidurlreverse(String idcaidurlreverse) {
+        this.idcaidurlreverse = idcaidurlreverse == null ? null : idcaidurlreverse.trim();
     }
 
     public String getOpenId() {
@@ -82,5 +91,13 @@ public class Shopkeeperinfo extends BaseEntity{
 
     public void setOpenId(String openId) {
         this.openId = openId == null ? null : openId.trim();
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 }

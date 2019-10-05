@@ -8,11 +8,14 @@
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="business" property="business" jdbcType="VARCHAR" />
     <result column="idnumber" property="idnumber" jdbcType="VARCHAR" />
-    <result column="Idcaidurl" property="idcaidurl" jdbcType="VARCHAR" />
+    <result column="Idcaidurlfront" property="idcaidurlfront" jdbcType="VARCHAR" />
+    <result column="Idcaidurlreverse" property="idcaidurlreverse" jdbcType="VARCHAR" />
     <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    shopkeeper_id, principal, store_id, phone, business, idnumber, Idcaidurl, open_id
+    shopkeeper_id, principal, store_id, phone, business, idnumber, Idcaidurlfront, Idcaidurlreverse, 
+    open_id, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -27,10 +30,12 @@
   <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Shopkeeperinfo" >
     insert into shopkeeperinfo (shopkeeper_id, principal, store_id, 
       phone, business, idnumber, 
-      Idcaidurl, open_id)
+      Idcaidurlfront, Idcaidurlreverse, open_id, 
+      remark)
     values (#{shopkeeperId,jdbcType=INTEGER}, #{principal,jdbcType=VARCHAR}, #{storeId,jdbcType=INTEGER}, 
       #{phone,jdbcType=VARCHAR}, #{business,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}, 
-      #{idcaidurl,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR})
+      #{idcaidurlfront,jdbcType=VARCHAR}, #{idcaidurlreverse,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Shopkeeperinfo" >
     insert into shopkeeperinfo
@@ -53,11 +58,17 @@
       <if test="idnumber != null" >
         idnumber,
       </if>
-      <if test="idcaidurl != null" >
-        Idcaidurl,
+      <if test="idcaidurlfront != null" >
+        Idcaidurlfront,
+      </if>
+      <if test="idcaidurlreverse != null" >
+        Idcaidurlreverse,
       </if>
       <if test="openId != null" >
         open_id,
+      </if>
+      <if test="remark != null" >
+        remark,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -79,11 +90,17 @@
       <if test="idnumber != null" >
         #{idnumber,jdbcType=VARCHAR},
       </if>
-      <if test="idcaidurl != null" >
-        #{idcaidurl,jdbcType=VARCHAR},
+      <if test="idcaidurlfront != null" >
+        #{idcaidurlfront,jdbcType=VARCHAR},
+      </if>
+      <if test="idcaidurlreverse != null" >
+        #{idcaidurlreverse,jdbcType=VARCHAR},
       </if>
       <if test="openId != null" >
         #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -105,11 +122,17 @@
       <if test="idnumber != null" >
         idnumber = #{idnumber,jdbcType=VARCHAR},
       </if>
-      <if test="idcaidurl != null" >
-        Idcaidurl = #{idcaidurl,jdbcType=VARCHAR},
+      <if test="idcaidurlfront != null" >
+        Idcaidurlfront = #{idcaidurlfront,jdbcType=VARCHAR},
+      </if>
+      <if test="idcaidurlreverse != null" >
+        Idcaidurlreverse = #{idcaidurlreverse,jdbcType=VARCHAR},
       </if>
       <if test="openId != null" >
         open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
     where shopkeeper_id = #{shopkeeperId,jdbcType=INTEGER}
@@ -121,8 +144,10 @@
       phone = #{phone,jdbcType=VARCHAR},
       business = #{business,jdbcType=VARCHAR},
       idnumber = #{idnumber,jdbcType=VARCHAR},
-      Idcaidurl = #{idcaidurl,jdbcType=VARCHAR},
-      open_id = #{openId,jdbcType=VARCHAR}
+      Idcaidurlfront = #{idcaidurlfront,jdbcType=VARCHAR},
+      Idcaidurlreverse = #{idcaidurlreverse,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
     where shopkeeper_id = #{shopkeeperId,jdbcType=INTEGER}
   </update>
 </mapper>

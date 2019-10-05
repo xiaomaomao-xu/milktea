@@ -2,9 +2,7 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class Storeinfo extends BaseEntity{
+public class Storeinfo {
     private Integer storeId;
 
     private String storeAccount;
@@ -14,6 +12,8 @@ public class Storeinfo extends BaseEntity{
     private String storePhone;
 
     private String storeName;
+
+    private String storeimage;
 
     private String storeAddress;
 
@@ -36,26 +36,15 @@ public class Storeinfo extends BaseEntity{
     private String longitude;
 
     private String notice;
-    
-    private String distance;
-    
-//    private List<>
 
-    public String getDistance() {
-		return distance;
-	}
+    private Integer busyness;
 
-	public void setDistance(String distance) {
-		this.distance = distance;
-	}
-
-	public Integer getStoreId() {
+    public Integer getStoreId() {
         return storeId;
     }
 
     public void setStoreId(Integer storeId) {
         this.storeId = storeId;
-        this.id = storeId;
     }
 
     public String getStoreAccount() {
@@ -88,6 +77,14 @@ public class Storeinfo extends BaseEntity{
 
     public void setStoreName(String storeName) {
         this.storeName = storeName == null ? null : storeName.trim();
+    }
+
+    public String getStoreimage() {
+        return storeimage;
+    }
+
+    public void setStoreimage(String storeimage) {
+        this.storeimage = storeimage == null ? null : storeimage.trim();
     }
 
     public String getStoreAddress() {
@@ -176,5 +173,13 @@ public class Storeinfo extends BaseEntity{
 
     public void setNotice(String notice) {
         this.notice = notice == null ? null : notice.trim();
+    }
+
+    public Integer getBusyness() {
+        return busyness;
+    }
+
+    public void setBusyness(Integer busyness) {
+        this.busyness = busyness;
     }
 }

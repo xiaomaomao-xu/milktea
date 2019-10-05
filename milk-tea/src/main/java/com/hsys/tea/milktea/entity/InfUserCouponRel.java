@@ -2,9 +2,7 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class InfUserCouponRel extends BaseEntity{
+public class InfUserCouponRel {
     private Integer relId;
 
     private Integer vipId;
@@ -23,7 +21,6 @@ public class InfUserCouponRel extends BaseEntity{
 
     public void setRelId(Integer relId) {
         this.relId = relId;
-        this.id = relId;
     }
 
     public Integer getVipId() {

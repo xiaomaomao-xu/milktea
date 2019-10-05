@@ -2,9 +2,7 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-import com.hsys.tea.milktea.comm.entity.BaseEntity;
-
-public class Expensecalendar extends BaseEntity{
+public class Expensecalendar {
     private Integer expenseId;
 
     private Integer userId;
@@ -17,13 +15,14 @@ public class Expensecalendar extends BaseEntity{
 
     private Integer paymentType;
 
+    private String remark;
+
     public Integer getExpenseId() {
         return expenseId;
     }
 
     public void setExpenseId(Integer expenseId) {
         this.expenseId = expenseId;
-        this.id = expenseId;
     }
 
     public Integer getUserId() {
@@ -64,5 +63,13 @@ public class Expensecalendar extends BaseEntity{
 
     public void setPaymentType(Integer paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 }

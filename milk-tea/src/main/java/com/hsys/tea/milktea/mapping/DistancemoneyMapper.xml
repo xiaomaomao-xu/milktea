@@ -5,9 +5,10 @@
     <id column="distance_id" property="distanceId" jdbcType="INTEGER" />
     <result column="distance" property="distance" jdbcType="INTEGER" />
     <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    distance_id, distance, money
+    distance_id, distance, money, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -20,10 +21,10 @@
     where distance_id = #{distanceId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Distancemoney" >
-    insert into distancemoney (distance_id, distance, money
-      )
-    values (#{distanceId,jdbcType=INTEGER}, #{distance,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}
-      )
+    insert into distancemoney (distance_id, distance, money, 
+      remark)
+    values (#{distanceId,jdbcType=INTEGER}, #{distance,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Distancemoney" >
     insert into distancemoney
@@ -37,6 +38,9 @@
       <if test="money != null" >
         money,
       </if>
+      <if test="remark != null" >
+        remark,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="distanceId != null" >
@@ -47,6 +51,9 @@
       </if>
       <if test="money != null" >
         #{money,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -59,13 +66,17 @@
       <if test="money != null" >
         money = #{money,jdbcType=INTEGER},
       </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
     </set>
     where distance_id = #{distanceId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Distancemoney" >
     update distancemoney
     set distance = #{distance,jdbcType=INTEGER},
-      money = #{money,jdbcType=INTEGER}
+      money = #{money,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
     where distance_id = #{distanceId,jdbcType=INTEGER}
   </update>
 </mapper>
