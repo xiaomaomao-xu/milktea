@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hsys.tea.milktea.user.service.AddressService;
+import com.hsys.tea.milktea.user.service.Impl.AddressService;
 
 @Controller
 @RequestMapping("/address")

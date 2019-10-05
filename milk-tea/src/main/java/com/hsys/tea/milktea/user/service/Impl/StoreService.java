@@ -1,4 +1,4 @@
-package com.hsys.tea.milktea.user.service;
+package com.hsys.tea.milktea.user.service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
