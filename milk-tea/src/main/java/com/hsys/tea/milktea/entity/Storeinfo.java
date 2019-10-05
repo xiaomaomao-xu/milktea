@@ -38,8 +38,18 @@ public class Storeinfo {
     private String notice;
 
     private Integer busyness;
+    
+    private String distance;
 
-    public Integer getStoreId() {
+    public String getDistance() {
+		return distance;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
+
+	public Integer getStoreId() {
         return storeId;
     }
 
