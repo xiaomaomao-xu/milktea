@@ -38,6 +38,8 @@ public class Storeinfo extends BaseEntity{
     private String notice;
     
     private String distance;
+    
+//    private List<>
 
     public String getDistance() {
 		return distance;

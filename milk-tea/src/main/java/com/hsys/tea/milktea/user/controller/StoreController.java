@@ -13,5 +13,8 @@ public class StoreController {
 	@Autowired
 	private StoreService ss;
 	
-	
+	@RequestMapping("/getDetailStoreinfo")
+	public String getDetailStoreinfo() {
+		return ss.getDetailStoreinfo();
+	}
 }
