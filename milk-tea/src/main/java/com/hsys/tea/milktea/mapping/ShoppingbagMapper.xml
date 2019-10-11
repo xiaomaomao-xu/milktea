@@ -2,38 +2,55 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hsys.tea.milktea.dao.ShoppingbagMapper" >
   <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Shoppingbag" >
-    <id column="bag_id" property="bagId" jdbcType="INTEGER" />
+    <id column="bag_id" property="bagId" jdbcType="BIGINT" />
     <result column="store_id" property="storeId" jdbcType="INTEGER" />
     <result column="scommodity_id" property="scommodityId" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="commodity_qantity" property="commodityQantity" jdbcType="INTEGER" />
-    <result column="material_id" property="materialId" jdbcType="VARCHAR" />
     <result column="scommodity_price" property="scommodityPrice" jdbcType="INTEGER" />
+    <result column="purchase_detail" property="purchaseDetail" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="blacklist" property="blacklist" jdbcType="INTEGER" />
   </resultMap>
+  
+  <resultMap id="DetailResultMap" type="com.hsys.tea.milktea.entity.Shoppingbag" extends="BaseResultMap" >
+    <collection property="shoppingbagDetailInfos" ofType="com.hsys.tea.milktea.entity.ShoppingbagDetailInfo">
+	    <result column="bag_detail_id" property="bagDetailId" jdbcType="BIGINT" />
+	    <result column="material_qantity" property="materialQantity" jdbcType="INTEGER" />
+	    <result column="material_id" property="materialId" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  
   <sql id="Base_Column_List" >
-    bag_id, store_id, scommodity_id, user_id, commodity_qantity, material_id, scommodity_price, 
+    bag_id, store_id, scommodity_id, user_id, commodity_qantity, scommodity_price, purchase_detail, 
     create_time, blacklist
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  
+  <select id="findCurrentUserBag" resultMap="DetailResultMap" parameterType="com.hsys.tea.milktea.entity.Shoppingbag" >
+    select 
+    *
+    from shoppingbag a,shoppingbagdetailinfo b
+    where a.bag_id = b.bag_id and user_id = #{user_id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from shoppingbag
-    where bag_id = #{bagId,jdbcType=INTEGER}
+    where bag_id = #{bagId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from shoppingbag
-    where bag_id = #{bagId,jdbcType=INTEGER}
+    where bag_id = #{bagId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Shoppingbag" >
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Shoppingbag">
     insert into shoppingbag (bag_id, store_id, scommodity_id, 
-      user_id, commodity_qantity, material_id, 
-      scommodity_price, create_time, blacklist
+      user_id, commodity_qantity, scommodity_price, 
+      purchase_detail, create_time, blacklist
       )
-    values (#{bagId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{scommodityId,jdbcType=INTEGER}, 
-      #{userId,jdbcType=INTEGER}, #{commodityQantity,jdbcType=INTEGER}, #{materialId,jdbcType=VARCHAR}, 
-      #{scommodityPrice,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{blacklist,jdbcType=INTEGER}
+    values (#{bagId,jdbcType=BIGINT}, #{storeId,jdbcType=INTEGER}, #{scommodityId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{commodityQantity,jdbcType=INTEGER}, #{scommodityPrice,jdbcType=INTEGER}, 
+      #{purchaseDetail,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{blacklist,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Shoppingbag" >
@@ -54,11 +71,11 @@
       <if test="commodityQantity != null" >
         commodity_qantity,
       </if>
-      <if test="materialId != null" >
-        material_id,
-      </if>
       <if test="scommodityPrice != null" >
         scommodity_price,
+      </if>
+      <if test="purchaseDetail != null" >
+        purchase_detail,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -69,7 +86,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="bagId != null" >
-        #{bagId,jdbcType=INTEGER},
+        #{bagId,jdbcType=BIGINT},
       </if>
       <if test="storeId != null" >
         #{storeId,jdbcType=INTEGER},
@@ -83,11 +100,11 @@
       <if test="commodityQantity != null" >
         #{commodityQantity,jdbcType=INTEGER},
       </if>
-      <if test="materialId != null" >
-        #{materialId,jdbcType=VARCHAR},
-      </if>
       <if test="scommodityPrice != null" >
         #{scommodityPrice,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseDetail != null" >
+        #{purchaseDetail,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -112,11 +129,11 @@
       <if test="commodityQantity != null" >
         commodity_qantity = #{commodityQantity,jdbcType=INTEGER},
       </if>
-      <if test="materialId != null" >
-        material_id = #{materialId,jdbcType=VARCHAR},
-      </if>
       <if test="scommodityPrice != null" >
         scommodity_price = #{scommodityPrice,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseDetail != null" >
+        purchase_detail = #{purchaseDetail,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -125,7 +142,7 @@
         blacklist = #{blacklist,jdbcType=INTEGER},
       </if>
     </set>
-    where bag_id = #{bagId,jdbcType=INTEGER}
+    where bag_id = #{bagId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Shoppingbag" >
     update shoppingbag
@@ -133,10 +150,10 @@
       scommodity_id = #{scommodityId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
       commodity_qantity = #{commodityQantity,jdbcType=INTEGER},
-      material_id = #{materialId,jdbcType=VARCHAR},
       scommodity_price = #{scommodityPrice,jdbcType=INTEGER},
+      purchase_detail = #{purchaseDetail,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       blacklist = #{blacklist,jdbcType=INTEGER}
-    where bag_id = #{bagId,jdbcType=INTEGER}
+    where bag_id = #{bagId,jdbcType=BIGINT}
   </update>
 </mapper>

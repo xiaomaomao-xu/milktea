@@ -2,39 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hsys.tea.milktea.dao.OrderdetailinfoMapper" >
   <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Orderdetailinfo" >
-    <id column="order_detail_id" property="orderDetailId" jdbcType="INTEGER" />
+    <id column="order_detail_id" property="orderDetailId" jdbcType="BIGINT" />
     <result column="order_id" property="orderId" jdbcType="BIGINT" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="store_id" property="storeId" jdbcType="INTEGER" />
-    <result column="material_id" property="materialId" jdbcType="VARCHAR" />
-    <result column="address_id" property="addressId" jdbcType="INTEGER" />
+    <result column="commodity_id" property="commodityId" jdbcType="INTEGER" />
+    <result column="commodity_num" property="commodityNum" jdbcType="INTEGER" />
     <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="purchase_detail" property="purchaseDetail" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="commodity_name" property="commodityName" jdbcType="VARCHAR" />
+    <result column="commodity_image" property="commodityImage" jdbcType="VARCHAR" />
+    <result column="commodity_price" property="commodityPrice" jdbcType="INTEGER" />
+    <result column="bag_id" property="bagId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    order_detail_id, order_id, user_id, store_id, material_id, address_id, order_time, 
-    remark, create_time
+    order_detail_id, order_id, commodity_id, commodity_num, order_time, purchase_detail, 
+    create_time, commodity_name, commodity_image, commodity_price, bag_id
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from orderdetailinfo
-    where order_detail_id = #{orderDetailId,jdbcType=INTEGER}
+    where order_detail_id = #{orderDetailId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from orderdetailinfo
-    where order_detail_id = #{orderDetailId,jdbcType=INTEGER}
+    where order_detail_id = #{orderDetailId,jdbcType=BIGINT}
   </delete>
+  
+  <insert id="insertByBatch" parameterType="java.util.List" >
+    insert into orderdetailinfo (order_detail_id, order_id, commodity_id, 
+      commodity_num, order_time, purchase_detail, 
+      create_time, commodity_name, commodity_image, 
+      commodity_price, bag_id)
+    values 
+    <foreach collection="orderdetailinfos" item="item" index="index" separator=",">
+		(
+			#{item.orderDetailId,jdbcType=BIGINT}, #{item.orderId,jdbcType=BIGINT}, #{item.commodityId,jdbcType=INTEGER}, 
+	        #{item.commodityNum,jdbcType=INTEGER}, #{item.orderTime,jdbcType=TIMESTAMP}, #{item.purchaseDetail,jdbcType=VARCHAR}, 
+	        #{item.createTime,jdbcType=TIMESTAMP}, #{item.commodityName,jdbcType=VARCHAR}, #{item.commodityImage,jdbcType=VARCHAR}, 
+	        #{item.commodityPrice,jdbcType=INTEGER}, #{item.bagId,jdbcType=BIGINT}
+		)
+     </foreach>
+  </insert>
+  
   <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Orderdetailinfo" >
-    insert into orderdetailinfo (order_detail_id, order_id, user_id, 
-      store_id, material_id, address_id, 
-      order_time, remark, create_time
-      )
-    values (#{orderDetailId,jdbcType=INTEGER}, #{orderId,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, 
-      #{storeId,jdbcType=INTEGER}, #{materialId,jdbcType=VARCHAR}, #{addressId,jdbcType=INTEGER}, 
-      #{orderTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
-      )
+    insert into orderdetailinfo (order_detail_id, order_id, commodity_id, 
+      commodity_num, order_time, purchase_detail, 
+      create_time, commodity_name, commodity_image, 
+      commodity_price, bag_id)
+    values (#{orderDetailId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{commodityId,jdbcType=INTEGER}, 
+      #{commodityNum,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}, #{purchaseDetail,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{commodityName,jdbcType=VARCHAR}, #{commodityImage,jdbcType=VARCHAR}, 
+      #{commodityPrice,jdbcType=INTEGER}, #{bagId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Orderdetailinfo" >
     insert into orderdetailinfo
@@ -45,55 +64,67 @@
       <if test="orderId != null" >
         order_id,
       </if>
-      <if test="userId != null" >
-        user_id,
+      <if test="commodityId != null" >
+        commodity_id,
       </if>
-      <if test="storeId != null" >
-        store_id,
-      </if>
-      <if test="materialId != null" >
-        material_id,
-      </if>
-      <if test="addressId != null" >
-        address_id,
+      <if test="commodityNum != null" >
+        commodity_num,
       </if>
       <if test="orderTime != null" >
         order_time,
       </if>
-      <if test="remark != null" >
-        remark,
+      <if test="purchaseDetail != null" >
+        purchase_detail,
       </if>
       <if test="createTime != null" >
         create_time,
       </if>
+      <if test="commodityName != null" >
+        commodity_name,
+      </if>
+      <if test="commodityImage != null" >
+        commodity_image,
+      </if>
+      <if test="commodityPrice != null" >
+        commodity_price,
+      </if>
+      <if test="bagId != null" >
+        bag_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="orderDetailId != null" >
-        #{orderDetailId,jdbcType=INTEGER},
+        #{orderDetailId,jdbcType=BIGINT},
       </if>
       <if test="orderId != null" >
         #{orderId,jdbcType=BIGINT},
       </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
+      <if test="commodityId != null" >
+        #{commodityId,jdbcType=INTEGER},
       </if>
-      <if test="storeId != null" >
-        #{storeId,jdbcType=INTEGER},
-      </if>
-      <if test="materialId != null" >
-        #{materialId,jdbcType=VARCHAR},
-      </if>
-      <if test="addressId != null" >
-        #{addressId,jdbcType=INTEGER},
+      <if test="commodityNum != null" >
+        #{commodityNum,jdbcType=INTEGER},
       </if>
       <if test="orderTime != null" >
         #{orderTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
+      <if test="purchaseDetail != null" >
+        #{purchaseDetail,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commodityName != null" >
+        #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityImage != null" >
+        #{commodityImage,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPrice != null" >
+        #{commodityPrice,jdbcType=INTEGER},
+      </if>
+      <if test="bagId != null" >
+        #{bagId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -103,40 +134,48 @@
       <if test="orderId != null" >
         order_id = #{orderId,jdbcType=BIGINT},
       </if>
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=INTEGER},
+      <if test="commodityId != null" >
+        commodity_id = #{commodityId,jdbcType=INTEGER},
       </if>
-      <if test="storeId != null" >
-        store_id = #{storeId,jdbcType=INTEGER},
-      </if>
-      <if test="materialId != null" >
-        material_id = #{materialId,jdbcType=VARCHAR},
-      </if>
-      <if test="addressId != null" >
-        address_id = #{addressId,jdbcType=INTEGER},
+      <if test="commodityNum != null" >
+        commodity_num = #{commodityNum,jdbcType=INTEGER},
       </if>
       <if test="orderTime != null" >
         order_time = #{orderTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
+      <if test="purchaseDetail != null" >
+        purchase_detail = #{purchaseDetail,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="commodityName != null" >
+        commodity_name = #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityImage != null" >
+        commodity_image = #{commodityImage,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPrice != null" >
+        commodity_price = #{commodityPrice,jdbcType=INTEGER},
+      </if>
+      <if test="bagId != null" >
+        bag_id = #{bagId,jdbcType=BIGINT},
+      </if>
     </set>
-    where order_detail_id = #{orderDetailId,jdbcType=INTEGER}
+    where order_detail_id = #{orderDetailId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Orderdetailinfo" >
     update orderdetailinfo
     set order_id = #{orderId,jdbcType=BIGINT},
-      user_id = #{userId,jdbcType=INTEGER},
-      store_id = #{storeId,jdbcType=INTEGER},
-      material_id = #{materialId,jdbcType=VARCHAR},
-      address_id = #{addressId,jdbcType=INTEGER},
+      commodity_id = #{commodityId,jdbcType=INTEGER},
+      commodity_num = #{commodityNum,jdbcType=INTEGER},
       order_time = #{orderTime,jdbcType=TIMESTAMP},
-      remark = #{remark,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
-    where order_detail_id = #{orderDetailId,jdbcType=INTEGER}
+      purchase_detail = #{purchaseDetail,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      commodity_name = #{commodityName,jdbcType=VARCHAR},
+      commodity_image = #{commodityImage,jdbcType=VARCHAR},
+      commodity_price = #{commodityPrice,jdbcType=INTEGER},
+      bag_id = #{bagId,jdbcType=BIGINT}
+    where order_detail_id = #{orderDetailId,jdbcType=BIGINT}
   </update>
 </mapper>

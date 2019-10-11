@@ -1,6 +1,7 @@
 package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Commoditytype {
     private Integer materialTypeId;
@@ -12,6 +13,30 @@ public class Commoditytype {
     private Integer storeId;
 
     private Date createTime;
+
+    private Integer priority;
+
+    private Integer isOffer;
+	
+	private List<Commodityinfo> commodityinfos;
+	
+	private List<Commoditymaterial> commoditymaterials;
+
+	public List<Commoditymaterial> getCommoditymaterials() {
+		return commoditymaterials;
+	}
+
+	public void setCommoditymaterials(List<Commoditymaterial> commoditymaterials) {
+		this.commoditymaterials = commoditymaterials;
+	}
+
+	public List<Commodityinfo> getCommodityinfos() {
+		return commodityinfos;
+	}
+
+	public void setCommodityinfos(List<Commodityinfo> commodityinfos) {
+		this.commodityinfos = commodityinfos;
+	}
 
     public Integer getMaterialTypeId() {
         return materialTypeId;
@@ -51,5 +76,21 @@ public class Commoditytype {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
+    public Integer getIsOffer() {
+        return isOffer;
+    }
+
+    public void setIsOffer(Integer isOffer) {
+        this.isOffer = isOffer;
     }
 }

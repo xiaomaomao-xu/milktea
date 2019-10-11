@@ -10,17 +10,47 @@
     <result column="commodity_label" property="commodityLabel" jdbcType="VARCHAR" />
     <result column="commodity_remark" property="commodityRemark" jdbcType="VARCHAR" />
     <result column="commodity_state" property="commodityState" jdbcType="INTEGER" />
-    <result column="material_id" property="materialId" jdbcType="VARCHAR" />
     <result column="imgthumb" property="imgthumb" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     <result column="store_id" property="storeId" jdbcType="INTEGER" />
   </resultMap>
+  
+  <resultMap id="DetailResultMap" type="com.hsys.tea.milktea.entity.Commodityinfo" extends="BaseResultMap" >
+    <collection property="commoditymaterialTypes" ofType="com.hsys.tea.milktea.entity.Commoditytype">
+        <result column="amaterial_type_id" property="materialTypeId" jdbcType="INTEGER" />
+	    <result column="material_type_name" property="materialTypeName" jdbcType="VARCHAR" />
+	    <collection property="commoditymaterials" ofType="com.hsys.tea.milktea.entity.Commoditymaterial">
+	       <result column="material_id" property="materialId" jdbcType="INTEGER" />
+		   <result column="material_name" property="materialName" jdbcType="VARCHAR" />
+		   <result column="material_price" property="materialPrice" jdbcType="INTEGER" />
+		   <result column="material_quantity" property="materialQuantity" jdbcType="INTEGER" />
+		   <result column="material_remark" property="materialRemark" jdbcType="VARCHAR" />
+		   <result column="bmaterial_type_id" property="materialTypeId" jdbcType="INTEGER" />
+	    </collection>
+    </collection>
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     commodity_id, commodity_name, material_type_id, commodity_price, commodity_quantity, 
     commodity_label, commodity_remark, commodity_state, material_id, imgthumb, create_time, 
     modify_time, store_id
   </sql>
+  
+  <select id="getDetailCommodityinfo" resultMap="BaseResultMap" parameterType="com.hsys.tea.milktea.entity.Commodityinfo" >
+    select a.*,b.*,c.*,b.material_type_id bmaterial_type_id,c.material_type_id amaterial_type_id
+    from commodityinfo a, commoditymaterial b, commoditytype c, inf_product_offering_rel d
+    where a.commodity_id = d.commodity_id and b.material_id = d.material_id 
+    and b.material_type_id = c.material_type_id and a.commodity_id = #{commodityId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="findAllList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from commodityinfo
+    where material_type_id = #{materialTypeId,jdbcType=INTEGER}
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

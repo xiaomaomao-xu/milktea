@@ -25,6 +25,13 @@
     user_monetary, payment_code, open_id, user_avatar_url, create_time, modify_time, 
     user_type, user_password, salt, blacklist
   </sql>
+  
+  <select id="findAllList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

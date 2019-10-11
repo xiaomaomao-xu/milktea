@@ -1,8 +1,12 @@
 package com.hsys.tea.milktea.dao;
 
+import java.util.List;
+
 import com.hsys.tea.milktea.entity.Userinfo;
 
 public interface UserinfoMapper {
+	List<Userinfo> findAllList();
+	
     int deleteByPrimaryKey(Integer userId);
 
     int insert(Userinfo record);

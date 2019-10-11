@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.Orderinfo" >
     <id column="order_id" property="orderId" jdbcType="BIGINT" />
     <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="offer_num" property="offerNum" jdbcType="INTEGER" />
     <result column="store_phone" property="storePhone" jdbcType="VARCHAR" />
     <result column="coupon" property="coupon" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -12,35 +13,79 @@
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="pickup_way" property="pickupWay" jdbcType="INTEGER" />
     <result column="shipping_fee" property="shippingFee" jdbcType="INTEGER" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="address_id" property="addressId" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="payment_type" property="paymentType" jdbcType="INTEGER" />
   </resultMap>
+  
+  <resultMap id="OrderinfoResultMap" type="com.hsys.tea.milktea.entity.Orderinfo" extends="BaseResultMap" >
+    <association property="storeinfo" javaType="com.hsys.tea.milktea.entity.Storeinfo">
+       <result column="sstore_id" property="storeId" jdbcType="INTEGER" />
+	   <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    </association>
+    <collection property="orderdetailinfos" ofType="com.hsys.tea.milktea.entity.Orderdetailinfo">
+	    <result column="commodity_id" property="commodityId" jdbcType="INTEGER" />
+	    <result column="commodity_image" property="commodityImage" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  
+  <resultMap id="DetailOrderinfoResultMap" type="com.hsys.tea.milktea.entity.Orderinfo" extends="BaseResultMap" >
+    <association property="storeinfo" javaType="com.hsys.tea.milktea.entity.Storeinfo">
+       <result column="sstore_id" property="storeId" jdbcType="INTEGER" />
+	   <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+	   <result column="store_address" property="storeAddress" jdbcType="VARCHAR" />
+    </association>
+    <collection property="orderdetailinfos" ofType="com.hsys.tea.milktea.entity.Orderdetailinfo">
+	    <result column="order_detail_id" property="orderDetailId" jdbcType="BIGINT" />
+	    <result column="commodity_id" property="commodityId" jdbcType="INTEGER" />
+	    <result column="commodity_num" property="commodityNum" jdbcType="INTEGER" />
+	    <result column="purchase_detail" property="purchaseDetail" jdbcType="VARCHAR" />
+	    <result column="commodity_name" property="commodityName" jdbcType="VARCHAR" />
+	    <result column="commodity_image" property="commodityImage" jdbcType="VARCHAR" />
+	    <result column="commodity_price" property="commodityPrice" jdbcType="INTEGER" />
+	    <result column="bag_id" property="bagId" jdbcType="BIGINT" />
+    </collection>
+  </resultMap>
+  
   <sql id="Base_Column_List" >
-    order_id, amount, store_phone, coupon, create_time, order_state, store_id, user_id, 
-    pickup_way, shipping_fee, address, address_id, remark, payment_type
+    order_id, amount, offer_num, store_phone, coupon, create_time, order_state, store_id, 
+    user_id, pickup_way, shipping_fee, address_id, remark, payment_type
   </sql>
+  
+  <select id="selectOrderinfo" resultMap="OrderinfoResultMap" parameterType="com.hsys.tea.milktea.entity.Orderinfo" >
+    select
+    *
+    from orderinfo a, orderdetailinfo b,storeinfo c
+    where a.order_id = b.order_id and a.store_id = c.store_id and a.user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectDeatilOrderinfo" resultMap="DetailOrderinfoResultMap" parameterType="com.hsys.tea.milktea.entity.Orderinfo" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderinfo
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from orderinfo
-    where order_id = #{orderId,jdbcType=BIGINT}
+    where order_id = #{orderId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from orderinfo
     where order_id = #{orderId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.hsys.tea.milktea.entity.Orderinfo" >
-    insert into orderinfo (order_id, amount, store_phone, 
-      coupon, create_time, order_state, 
-      store_id, user_id, pickup_way, 
-      shipping_fee, address, address_id, 
+    insert into orderinfo (order_id, amount, offer_num, 
+      store_phone, coupon, create_time, 
+      order_state, store_id, user_id, 
+      pickup_way, shipping_fee, address_id, 
       remark, payment_type)
-    values (#{orderId,jdbcType=BIGINT}, #{amount,jdbcType=INTEGER}, #{storePhone,jdbcType=VARCHAR}, 
-      #{coupon,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{orderState,jdbcType=INTEGER}, 
-      #{storeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{pickupWay,jdbcType=INTEGER}, 
-      #{shippingFee,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{addressId,jdbcType=INTEGER}, 
+    values (#{orderId,jdbcType=BIGINT}, #{amount,jdbcType=INTEGER}, #{offerNum,jdbcType=INTEGER}, 
+      #{storePhone,jdbcType=VARCHAR}, #{coupon,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{orderState,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{pickupWay,jdbcType=INTEGER}, #{shippingFee,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}, 
       #{remark,jdbcType=VARCHAR}, #{paymentType,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.Orderinfo" >
@@ -51,6 +96,9 @@
       </if>
       <if test="amount != null" >
         amount,
+      </if>
+      <if test="offerNum != null" >
+        offer_num,
       </if>
       <if test="storePhone != null" >
         store_phone,
@@ -76,9 +124,6 @@
       <if test="shippingFee != null" >
         shipping_fee,
       </if>
-      <if test="address != null" >
-        address,
-      </if>
       <if test="addressId != null" >
         address_id,
       </if>
@@ -95,6 +140,9 @@
       </if>
       <if test="amount != null" >
         #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="offerNum != null" >
+        #{offerNum,jdbcType=INTEGER},
       </if>
       <if test="storePhone != null" >
         #{storePhone,jdbcType=VARCHAR},
@@ -120,9 +168,6 @@
       <if test="shippingFee != null" >
         #{shippingFee,jdbcType=INTEGER},
       </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
-      </if>
       <if test="addressId != null" >
         #{addressId,jdbcType=INTEGER},
       </if>
@@ -139,6 +184,9 @@
     <set >
       <if test="amount != null" >
         amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="offerNum != null" >
+        offer_num = #{offerNum,jdbcType=INTEGER},
       </if>
       <if test="storePhone != null" >
         store_phone = #{storePhone,jdbcType=VARCHAR},
@@ -164,9 +212,6 @@
       <if test="shippingFee != null" >
         shipping_fee = #{shippingFee,jdbcType=INTEGER},
       </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
-      </if>
       <if test="addressId != null" >
         address_id = #{addressId,jdbcType=INTEGER},
       </if>
@@ -182,6 +227,7 @@
   <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.Orderinfo" >
     update orderinfo
     set amount = #{amount,jdbcType=INTEGER},
+      offer_num = #{offerNum,jdbcType=INTEGER},
       store_phone = #{storePhone,jdbcType=VARCHAR},
       coupon = #{coupon,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -190,7 +236,6 @@
       user_id = #{userId,jdbcType=INTEGER},
       pickup_way = #{pickupWay,jdbcType=INTEGER},
       shipping_fee = #{shippingFee,jdbcType=INTEGER},
-      address = #{address,jdbcType=VARCHAR},
       address_id = #{addressId,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       payment_type = #{paymentType,jdbcType=INTEGER}

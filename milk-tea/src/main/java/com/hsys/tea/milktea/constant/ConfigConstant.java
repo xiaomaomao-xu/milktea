@@ -140,4 +140,19 @@ public class ConfigConstant {
 	 * 前台默认显示地址
 	 */
 	public static final String defaultAddress = "遵义市";
+	
+	
+	/**
+	 * 更新数据成功
+	 * 
+	 * */
+	public static final String renewalwin = "1";
+	
+	
+	/**
+	 * 更新数据失败
+	 * 
+	 * */
+	public static final String renewalfaling = "0";
+	
 }

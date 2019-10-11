@@ -21,13 +21,39 @@
     <result column="notice" property="notice" jdbcType="VARCHAR" />
     <result column="busyness" property="busyness" jdbcType="INTEGER" />
   </resultMap>
+  
+  <resultMap id="DetailResultMap" type="com.hsys.tea.milktea.entity.Storeinfo" extends="BaseResultMap" >
+    <collection property="commoditytypes" ofType="com.hsys.tea.milktea.entity.Commoditytype">
+        <result column="material_type_id" property="materialTypeId" jdbcType="INTEGER" />
+	    <result column="material_type_name" property="materialTypeName" jdbcType="VARCHAR" />
+	    <collection property="commodityinfos" ofType="com.hsys.tea.milktea.entity.Commodityinfo">
+	       <result column="commodity_id" property="commodityId" jdbcType="INTEGER" />
+		   <result column="commodity_name" property="commodityName" jdbcType="VARCHAR" />
+		   <result column="commodity_price" property="commodityPrice" jdbcType="INTEGER" />
+		   <result column="commodity_quantity" property="commodityQuantity" jdbcType="INTEGER" />
+		   <result column="commodity_label" property="commodityLabel" jdbcType="VARCHAR" />
+		   <result column="commodity_remark" property="commodityRemark" jdbcType="VARCHAR" />
+		   <result column="commodity_state" property="commodityState" jdbcType="INTEGER" />
+		   <result column="material_id" property="materialId" jdbcType="VARCHAR" />
+		   <result column="imgthumb" property="imgthumb" jdbcType="VARCHAR" />
+	    </collection>
+    </collection>
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     store_id, store_account, store_password, store_phone, store_name, storeimage, store_address, 
     business_hours, shipping_instruction, delivery_cost, operating_start, takeout_start, 
     enter_time, turnover, latitude, longitude, notice, busyness
   </sql>
   
-  <select id="findAllList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="getDetailStoreinfo" resultMap="DetailResultMap" parameterType="com.hsys.tea.milktea.entity.Storeinfo" >
+    select 
+    *
+    from storeinfo a, commoditytype b, commodityinfo c
+    where a.store_id = b. store_id and b.material_type_id = c.material_type_id and a.store_id = #{storeId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="findAllList" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from storeinfo

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.ShoppingbagDetailInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.ShoppingbagDetailInfo" >
+    <id column="bag_detail_id" property="bagDetailId" jdbcType="BIGINT" />
+    <result column="bag_id" property="bagId" jdbcType="BIGINT" />
+    <result column="material_qantity" property="materialQantity" jdbcType="INTEGER" />
+    <result column="material_id" property="materialId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="blacklist" property="blacklist" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bag_detail_id, bag_id, material_qantity, material_id, create_time, blacklist
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from shoppingbagdetailinfo
+    where bag_detail_id = #{bagDetailId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from shoppingbagdetailinfo
+    where bag_detail_id = #{bagDetailId,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insertByBatch" parameterType="java.util.List" >
+    insert into shoppingbagdetailinfo (bag_detail_id, bag_id, material_qantity, 
+      material_id, create_time, blacklist
+      )
+    values
+     <foreach collection="shoppingbagDetailInfos" item="item" index="index" separator=",">
+		(
+			#{item.bagDetailId,jdbcType=BIGINT}, #{item.bagId,jdbcType=BIGINT}, #{item.materialQantity,jdbcType=INTEGER}, 
+			#{item.materialId,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.blacklist,jdbcType=INTEGER}
+		)
+     </foreach>	
+  </insert>
+  
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.ShoppingbagDetailInfo" >
+    insert into shoppingbagdetailinfo (bag_detail_id, bag_id, material_qantity, 
+      material_id, create_time, blacklist
+      )
+    values (#{bagDetailId,jdbcType=BIGINT}, #{bagId,jdbcType=BIGINT}, #{materialQantity,jdbcType=INTEGER}, 
+      #{materialId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{blacklist,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.ShoppingbagDetailInfo" >
+    insert into shoppingbagdetailinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bagDetailId != null" >
+        bag_detail_id,
+      </if>
+      <if test="bagId != null" >
+        bag_id,
+      </if>
+      <if test="materialQantity != null" >
+        material_qantity,
+      </if>
+      <if test="materialId != null" >
+        material_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="blacklist != null" >
+        blacklist,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bagDetailId != null" >
+        #{bagDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="bagId != null" >
+        #{bagId,jdbcType=BIGINT},
+      </if>
+      <if test="materialQantity != null" >
+        #{materialQantity,jdbcType=INTEGER},
+      </if>
+      <if test="materialId != null" >
+        #{materialId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blacklist != null" >
+        #{blacklist,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.ShoppingbagDetailInfo" >
+    update shoppingbagdetailinfo
+    <set >
+      <if test="bagId != null" >
+        bag_id = #{bagId,jdbcType=BIGINT},
+      </if>
+      <if test="materialQantity != null" >
+        material_qantity = #{materialQantity,jdbcType=INTEGER},
+      </if>
+      <if test="materialId != null" >
+        material_id = #{materialId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blacklist != null" >
+        blacklist = #{blacklist,jdbcType=INTEGER},
+      </if>
+    </set>
+    where bag_detail_id = #{bagDetailId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.ShoppingbagDetailInfo" >
+    update shoppingbagdetailinfo
+    set bag_id = #{bagId,jdbcType=BIGINT},
+      material_qantity = #{materialQantity,jdbcType=INTEGER},
+      material_id = #{materialId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      blacklist = #{blacklist,jdbcType=INTEGER}
+    where bag_detail_id = #{bagDetailId,jdbcType=BIGINT}
+  </update>
+</mapper>

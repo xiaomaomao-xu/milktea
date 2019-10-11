@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsys.tea.milktea.dao.InfProductOfferingRelMapper" >
+  <resultMap id="BaseResultMap" type="com.hsys.tea.milktea.entity.InfProductOfferingRel" >
+    <id column="prod_offer_rel_id" property="prodOfferRelId" jdbcType="INTEGER" />
+    <result column="material_id" property="materialId" jdbcType="INTEGER" />
+    <result column="commodity_id" property="commodityId" jdbcType="INTEGER" />
+    <result column="conflict" property="conflict" jdbcType="INTEGER" />
+    <result column="must_prod" property="mustProd" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    prod_offer_rel_id, material_id, commodity_id, conflict, must_prod, create_time
+  </sql>
+  
+  <select id="selectByMaterialId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from inf_product_offering_rel
+    where material_id = #{materialId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from inf_product_offering_rel
+    where prod_offer_rel_id = #{prodOfferRelId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from inf_product_offering_rel
+    where prod_offer_rel_id = #{prodOfferRelId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsys.tea.milktea.entity.InfProductOfferingRel" >
+    insert into inf_product_offering_rel (prod_offer_rel_id, material_id, commodity_id, 
+      conflict, must_prod, create_time
+      )
+    values (#{prodOfferRelId,jdbcType=INTEGER}, #{materialId,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, 
+      #{conflict,jdbcType=INTEGER}, #{mustProd,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsys.tea.milktea.entity.InfProductOfferingRel" >
+    insert into inf_product_offering_rel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prodOfferRelId != null" >
+        prod_offer_rel_id,
+      </if>
+      <if test="materialId != null" >
+        material_id,
+      </if>
+      <if test="commodityId != null" >
+        commodity_id,
+      </if>
+      <if test="conflict != null" >
+        conflict,
+      </if>
+      <if test="mustProd != null" >
+        must_prod,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prodOfferRelId != null" >
+        #{prodOfferRelId,jdbcType=INTEGER},
+      </if>
+      <if test="materialId != null" >
+        #{materialId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityId != null" >
+        #{commodityId,jdbcType=INTEGER},
+      </if>
+      <if test="conflict != null" >
+        #{conflict,jdbcType=INTEGER},
+      </if>
+      <if test="mustProd != null" >
+        #{mustProd,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsys.tea.milktea.entity.InfProductOfferingRel" >
+    update inf_product_offering_rel
+    <set >
+      <if test="materialId != null" >
+        material_id = #{materialId,jdbcType=INTEGER},
+      </if>
+      <if test="commodityId != null" >
+        commodity_id = #{commodityId,jdbcType=INTEGER},
+      </if>
+      <if test="conflict != null" >
+        conflict = #{conflict,jdbcType=INTEGER},
+      </if>
+      <if test="mustProd != null" >
+        must_prod = #{mustProd,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where prod_offer_rel_id = #{prodOfferRelId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsys.tea.milktea.entity.InfProductOfferingRel" >
+    update inf_product_offering_rel
+    set material_id = #{materialId,jdbcType=INTEGER},
+      commodity_id = #{commodityId,jdbcType=INTEGER},
+      conflict = #{conflict,jdbcType=INTEGER},
+      must_prod = #{mustProd,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where prod_offer_rel_id = #{prodOfferRelId,jdbcType=INTEGER}
+  </update>
+</mapper>

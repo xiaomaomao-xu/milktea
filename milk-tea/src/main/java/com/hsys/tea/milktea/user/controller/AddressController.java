@@ -14,10 +14,10 @@ public class AddressController {
 	@Autowired
 	private AddressService is; 
 	
-	@RequestMapping("/getCurrentCityStoreinfos")
+	@RequestMapping("/getSelectCityStoreinfos")
 	@ResponseBody
-	public String getCurrentCityStoreinfos (String userAddress, String longitude, String latitude) {
-		return is.getCurrentCityStoreinfos(userAddress, longitude, latitude);
+	public String getSelectCityStoreinfos (String userAddress, String longitude, String latitude) {
+		return is.getSelectCityStoreinfos(userAddress, longitude, latitude);
 	}
 	
 	@RequestMapping("/getdefaultCityStoreinfos")
@@ -31,4 +31,7 @@ public class AddressController {
 	public String getAllAddress() {
 		return is.getAllAddress();
 	}
+	
+	
+	
 }

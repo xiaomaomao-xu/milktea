@@ -1,31 +1,46 @@
 package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Orderdetailinfo {
-    private Integer orderDetailId;
+    private Long orderDetailId;
 
     private Long orderId;
 
-    private Integer userId;
+    private Integer commodityId;
 
-    private Integer storeId;
-
-    private String materialId;
-
-    private Integer addressId;
+    private Integer commodityNum;
 
     private Date orderTime;
 
-    private String remark;
+    private String purchaseDetail;
 
     private Date createTime;
 
-    public Integer getOrderDetailId() {
+    private String commodityName;
+
+    private String commodityImage;
+
+    private Integer commodityPrice;
+
+    private Long bagId;
+    
+    private List<Commodityinfo> commodityinfos;
+
+    public List<Commodityinfo> getCommodityinfos() {
+		return commodityinfos;
+	}
+
+	public void setCommodityinfos(List<Commodityinfo> commodityinfos) {
+		this.commodityinfos = commodityinfos;
+	}
+
+	public Long getOrderDetailId() {
         return orderDetailId;
     }
 
-    public void setOrderDetailId(Integer orderDetailId) {
+    public void setOrderDetailId(Long orderDetailId) {
         this.orderDetailId = orderDetailId;
     }
 
@@ -37,36 +52,20 @@ public class Orderdetailinfo {
         this.orderId = orderId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getCommodityId() {
+        return commodityId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setCommodityId(Integer commodityId) {
+        this.commodityId = commodityId;
     }
 
-    public Integer getStoreId() {
-        return storeId;
+    public Integer getCommodityNum() {
+        return commodityNum;
     }
 
-    public void setStoreId(Integer storeId) {
-        this.storeId = storeId;
-    }
-
-    public String getMaterialId() {
-        return materialId;
-    }
-
-    public void setMaterialId(String materialId) {
-        this.materialId = materialId == null ? null : materialId.trim();
-    }
-
-    public Integer getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Integer addressId) {
-        this.addressId = addressId;
+    public void setCommodityNum(Integer commodityNum) {
+        this.commodityNum = commodityNum;
     }
 
     public Date getOrderTime() {
@@ -77,12 +76,12 @@ public class Orderdetailinfo {
         this.orderTime = orderTime;
     }
 
-    public String getRemark() {
-        return remark;
+    public String getPurchaseDetail() {
+        return purchaseDetail;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
+    public void setPurchaseDetail(String purchaseDetail) {
+        this.purchaseDetail = purchaseDetail == null ? null : purchaseDetail.trim();
     }
 
     public Date getCreateTime() {
@@ -91,5 +90,37 @@ public class Orderdetailinfo {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getCommodityName() {
+        return commodityName;
+    }
+
+    public void setCommodityName(String commodityName) {
+        this.commodityName = commodityName == null ? null : commodityName.trim();
+    }
+
+    public String getCommodityImage() {
+        return commodityImage;
+    }
+
+    public void setCommodityImage(String commodityImage) {
+        this.commodityImage = commodityImage == null ? null : commodityImage.trim();
+    }
+
+    public Integer getCommodityPrice() {
+        return commodityPrice;
+    }
+
+    public void setCommodityPrice(Integer commodityPrice) {
+        this.commodityPrice = commodityPrice;
+    }
+
+    public Long getBagId() {
+        return bagId;
+    }
+
+    public void setBagId(Long bagId) {
+        this.bagId = bagId;
     }
 }

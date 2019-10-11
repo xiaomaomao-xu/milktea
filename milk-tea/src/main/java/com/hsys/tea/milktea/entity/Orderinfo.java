@@ -1,11 +1,14 @@
 package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Orderinfo {
     private Long orderId;
 
     private Integer amount;
+
+    private Integer offerNum;
 
     private String storePhone;
 
@@ -23,15 +26,33 @@ public class Orderinfo {
 
     private Integer shippingFee;
 
-    private String address;
-
     private Integer addressId;
 
     private String remark;
 
     private Integer paymentType;
+    
+    private List<Orderdetailinfo> orderdetailinfos;
+    
+    private Storeinfo storeinfo;
 
-    public Long getOrderId() {
+    public Storeinfo getStoreinfo() {
+		return storeinfo;
+	}
+
+	public void setStoreinfo(Storeinfo storeinfo) {
+		this.storeinfo = storeinfo;
+	}
+
+	public List<Orderdetailinfo> getOrderdetailinfos() {
+		return orderdetailinfos;
+	}
+
+	public void setOrderdetailinfos(List<Orderdetailinfo> orderdetailinfos) {
+		this.orderdetailinfos = orderdetailinfos;
+	}
+
+	public Long getOrderId() {
         return orderId;
     }
 
@@ -45,6 +66,14 @@ public class Orderinfo {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public Integer getOfferNum() {
+        return offerNum;
+    }
+
+    public void setOfferNum(Integer offerNum) {
+        this.offerNum = offerNum;
     }
 
     public String getStorePhone() {
@@ -109,14 +138,6 @@ public class Orderinfo {
 
     public void setShippingFee(Integer shippingFee) {
         this.shippingFee = shippingFee;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
     }
 
     public Integer getAddressId() {

@@ -16,7 +16,7 @@ public class SpringTest {
 	
 	@Test
 	public void test1() {
-		String findAllStoreinfos = is.getCurrentCityStoreinfos("sd", "112.2", "555.3");
+		String findAllStoreinfos = is.getSelectCityStoreinfos("sd", "112.2", "555.3");
 		System.out.println(findAllStoreinfos);
 	}
 }

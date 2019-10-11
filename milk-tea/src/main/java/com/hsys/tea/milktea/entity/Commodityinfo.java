@@ -1,6 +1,7 @@
 package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Commodityinfo {
     private Integer commodityId;
@@ -28,8 +29,34 @@ public class Commodityinfo {
     private Date modifyTime;
 
     private Integer storeId;
+    
+    /**
+     * 标签列表
+     */
+    private List<String> labels;
+    
+    /**
+     * 材料类型列表
+     */
+    private List<Commoditytype> commoditymaterialTypes;
 
-    public Integer getCommodityId() {
+    public List<Commoditytype> getCommoditymaterialTypes() {
+		return commoditymaterialTypes;
+	}
+
+	public void setCommoditymaterialTypes(List<Commoditytype> commoditymaterialTypes) {
+		this.commoditymaterialTypes = commoditymaterialTypes;
+	}
+
+	public List<String> getLabels() {
+		return labels;
+	}
+
+	public void setLabels(List<String> labels) {
+		this.labels = labels;
+	}
+
+	public Integer getCommodityId() {
         return commodityId;
     }
 

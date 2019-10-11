@@ -14,6 +14,14 @@
     material_id, material_name, material_price, material_quantity, material_remark, material_type_id, 
     imgthumb
   </sql>
+  
+  <select id="findAllList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from commoditymaterial
+    where material_type_id = #{materialTypeId,jdbcType=INTEGER}
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

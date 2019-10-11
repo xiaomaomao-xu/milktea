@@ -6,6 +6,8 @@ import com.hsys.tea.milktea.entity.Storeinfo;
 
 public interface StoreinfoMapper {
 	
+	Storeinfo getDetailStoreinfo(Storeinfo record);
+	
 	List<Storeinfo> findAllList();
 	
     int deleteByPrimaryKey(Integer storeId);

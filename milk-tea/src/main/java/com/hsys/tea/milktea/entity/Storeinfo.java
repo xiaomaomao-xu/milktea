@@ -1,6 +1,7 @@
 package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Storeinfo {
     private Integer storeId;
@@ -40,8 +41,18 @@ public class Storeinfo {
     private Integer busyness;
     
     private String distance;
+    
+    private List<Commoditytype> commoditytypes;
 
-    public String getDistance() {
+    public List<Commoditytype> getCommoditytypes() {
+		return commoditytypes;
+	}
+
+	public void setCommoditytypes(List<Commoditytype> commoditytypes) {
+		this.commoditytypes = commoditytypes;
+	}
+
+	public String getDistance() {
 		return distance;
 	}
 

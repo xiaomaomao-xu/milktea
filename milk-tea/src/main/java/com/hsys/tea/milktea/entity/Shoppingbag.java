@@ -1,9 +1,10 @@
 package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Shoppingbag {
-    private Integer bagId;
+    private Long bagId;
 
     private Integer storeId;
 
@@ -13,19 +14,29 @@ public class Shoppingbag {
 
     private Integer commodityQantity;
 
-    private String materialId;
-
     private Integer scommodityPrice;
+
+    private String purchaseDetail;
 
     private Date createTime;
 
     private Integer blacklist;
+    
+    private List<ShoppingbagDetailInfo> shoppingbagDetailInfos;
 
-    public Integer getBagId() {
+    public List<ShoppingbagDetailInfo> getShoppingbagDetailInfos() {
+		return shoppingbagDetailInfos;
+	}
+
+	public void setShoppingbagDetailInfos(List<ShoppingbagDetailInfo> shoppingbagDetailInfos) {
+		this.shoppingbagDetailInfos = shoppingbagDetailInfos;
+	}
+
+	public Long getBagId() {
         return bagId;
     }
 
-    public void setBagId(Integer bagId) {
+    public void setBagId(Long bagId) {
         this.bagId = bagId;
     }
 
@@ -61,20 +72,20 @@ public class Shoppingbag {
         this.commodityQantity = commodityQantity;
     }
 
-    public String getMaterialId() {
-        return materialId;
-    }
-
-    public void setMaterialId(String materialId) {
-        this.materialId = materialId == null ? null : materialId.trim();
-    }
-
     public Integer getScommodityPrice() {
         return scommodityPrice;
     }
 
     public void setScommodityPrice(Integer scommodityPrice) {
         this.scommodityPrice = scommodityPrice;
+    }
+
+    public String getPurchaseDetail() {
+        return purchaseDetail;
+    }
+
+    public void setPurchaseDetail(String purchaseDetail) {
+        this.purchaseDetail = purchaseDetail == null ? null : purchaseDetail.trim();
     }
 
     public Date getCreateTime() {

@@ -28,6 +28,13 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<servlet>
+  		<servlet-name>TheardServlet</servlet-name>
+  		<servlet-class>com.hsys.tea.milktea.comm.servlet.TheardServlet</servlet-class>
+  		<load-on-startup>2</load-on-startup>
+	</servlet>
+	
 	<!-- 配置 DispatcherServlet -->
 	<servlet>
 		<servlet-name>DispatcherServlet</servlet-name>
@@ -42,4 +49,5 @@
 		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
 </web-app>

@@ -3,6 +3,8 @@ package com.hsys.tea.milktea.dao;
 import com.hsys.tea.milktea.entity.Shopkeeperinfo;
 
 public interface ShopkeeperinfoMapper {
+	Shopkeeperinfo selectByStoreId(Integer storeId);
+	
     int deleteByPrimaryKey(Integer shopkeeperId);
 
     int insert(Shopkeeperinfo record);

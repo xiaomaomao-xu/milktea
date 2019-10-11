@@ -17,6 +17,14 @@
     shopkeeper_id, principal, store_id, phone, business, idnumber, Idcaidurlfront, Idcaidurlreverse, 
     open_id, remark
   </sql>
+  
+  <select id="selectByStoreId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shopkeeperinfo
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
