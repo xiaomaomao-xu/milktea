@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.hsys.tea.milktea.constant.ConfigConstant;
 import com.hsys.tea.milktea.dao.StoreinfoMapper;
 import com.hsys.tea.milktea.entity.Storeinfo;
+import com.hsys.tea.milktea.user.service.IAddressService;
 import com.hsys.tea.milktea.utils.CalculationDistanceUtils;
 
 @Service
-public class AddressService {
+public class AddressService implements IAddressService{
 	
 	@Autowired
 	private StoreinfoMapper sm;
@@ -28,6 +28,7 @@ public class AddressService {
 	 * 获取地址选择列表
 	 * @return
 	 */
+	@Override
 	public String getAllAddress() {
 		List<Storeinfo> findAllLists = sm.findAllList();
 		Map<String, List<String>> addressMap = new HashMap<String, List<String>>();
@@ -80,12 +81,20 @@ public class AddressService {
 	/**
 	 * 判断用户当前所在的城市里面有没有相应的门店
 	 */
+	@Override
 	public String getSelectCityStoreinfos(String userAddress, String longitude, String latitude){
 		return getStoreinfos(userAddress, longitude, latitude);
 	}
 	
+	@Override
 	public String getdefaultCityStoreinfos(String longitude, String latitude) {
-		return getStoreinfos(ConfigConstant.defaultAddress, longitude, latitude);
+		List<Storeinfo> findAllList = sm.findAllList();
+		if(findAllList == null || findAllList.size() == 0) {
+			return null;
+		}
+		String storeAddress = findAllList.get(0).getStoreAddress();
+		String splitString = splitString(storeAddress);
+		return getStoreinfos(splitString, longitude, latitude);
 	}
 	
 	/**

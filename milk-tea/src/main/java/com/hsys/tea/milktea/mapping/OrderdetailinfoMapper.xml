@@ -35,7 +35,7 @@
       create_time, commodity_name, commodity_image, 
       commodity_price, bag_id)
     values 
-    <foreach collection="orderdetailinfos" item="item" index="index" separator=",">
+    <foreach collection="list" item="item" index="index" separator=",">
 		(
 			#{item.orderDetailId,jdbcType=BIGINT}, #{item.orderId,jdbcType=BIGINT}, #{item.commodityId,jdbcType=INTEGER}, 
 	        #{item.commodityNum,jdbcType=INTEGER}, #{item.orderTime,jdbcType=TIMESTAMP}, #{item.purchaseDetail,jdbcType=VARCHAR}, 

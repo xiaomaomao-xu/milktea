@@ -3,8 +3,6 @@ package com.hsys.tea.milktea.printer;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.http.HttpEntity;
@@ -27,7 +25,7 @@ public class Api_java_demo {
 		public static final String UKEY = "b4FfJjuya82vfg2b";//*必填*: 注册账号后生成的UKEY
 		
 		//添加打印机
-		private static String addprinter(Print_xingx info){
+		public static String addprinter(Print_xingx info){
 			String snlist="";
 			//info.getSnId()+"#"+info.getKey()+"#"+info.getRemark()+"#"
 			if(!info.getSnId().equals("")) {
@@ -115,7 +113,7 @@ public class Api_java_demo {
 		 * @return
 		 */
 		//打印订单
-		private static String print(String sn /*打印机编号*/,String orderId,String address,String phone,String date,String moneys,String remark,List<order> list){
+		public static String print(String sn /*打印机编号*/,String orderId,String address,String phone,String date,String moneys,String remark,List<order> list){
 			//标签说明：
 			//单标签: 
 			//"<BR>"为换行,"<CUT>"为切刀指令(主动切纸,仅限切刀打印机使用才有效果)
@@ -220,7 +218,7 @@ public class Api_java_demo {
 		 * @param shopname
 		 * @return
 		 */
-		private static String prints(String sn /*打印机编号*/,String number,String count,String prive,String date,String adjunction,String shopname){
+		public static String prints(String sn /*打印机编号*/,String number,String count,String prive,String date,String adjunction,String shopname){
 			//标签说明：
 			//单标签: 
 			//"<BR>"为换行,"<CUT>"为切刀指令(主动切纸,仅限切刀打印机使用才有效果)
@@ -317,7 +315,7 @@ public class Api_java_demo {
 
 		
 		//查询订单是否打印成功
-		private static String queryOrderState(String orderid){
+		public static String queryOrderState(String orderid){
 		
 		   //通过POST请求，发送打印信息到服务器
 			RequestConfig requestConfig = RequestConfig.custom()  
@@ -383,7 +381,7 @@ public class Api_java_demo {
 		
 		
 		//查询指定打印机某天的订单详情
-		private static String queryOrderInfoByDate(String sn/*打印机编号*/,String strdate/*时间--yyyy-MM-ss*/){
+		public static String queryOrderInfoByDate(String sn/*打印机编号*/,String strdate/*时间--yyyy-MM-ss*/){
 		
 		    //通过POST请求，发送打印信息到服务器
 			RequestConfig requestConfig = RequestConfig.custom()  
@@ -450,7 +448,7 @@ public class Api_java_demo {
 		
 		
 		//查询打印机的状态
-		private static String queryPrinterStatus(String sn/*打印机编号*/){
+		public static String queryPrinterStatus(String sn/*打印机编号*/){
 		
 		    //通过POST请求，发送打印信息到服务器
 			RequestConfig requestConfig = RequestConfig.custom()  
@@ -515,7 +513,7 @@ public class Api_java_demo {
 		
 		
 		//删除打印机
-		private static String Open_printerDelList(String snlist/*打印机编号，批量用"-"减号分隔*/){
+		public static String Open_printerDelList(String snlist/*打印机编号，批量用"-"减号分隔*/){
 				
 		//通过POST请求，发送打印信息到服务器
 					RequestConfig requestConfig = RequestConfig.custom()  
@@ -579,7 +577,7 @@ public class Api_java_demo {
 			   }
 		
 		//生成签名字符串
-		private static String signature(String USER,String UKEY,String STIME){
+		public static String signature(String USER,String UKEY,String STIME){
 			String s = DigestUtils.shaHex(USER+UKEY+STIME);
 			return s;
 		}

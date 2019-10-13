@@ -16,19 +16,14 @@ import com.google.gson.reflect.TypeToken;
 public class MyWebSocketHandler implements WebSocketHandler{
 	private static ConcurrentHashMap<String, WebSocketSession> webSocketSet = new ConcurrentHashMap<String, WebSocketSession>();//用户
 	private static ConcurrentLinkedQueue<WebSocketSession> webSocketSetcat = new ConcurrentLinkedQueue<WebSocketSession>();//用户
-	private static ConcurrentHashMap<String, WebSocketSession> webSocketSetjiu = new ConcurrentHashMap<String, WebSocketSession>();//用户
     // 连接 就绪时 
     @Override
     public void afterConnectionEstablished(WebSocketSession session)
             throws Exception {
     	String userId = (String) session.getAttributes().get("user");
-//    	System.out.println(userId);
-    	if(userId.split(",")[0].equals("c")){
+    	webSocketSet.put(userId, session);
+    	if(userId.split(",")[1].equals("s")) {
     		webSocketSetcat.add(session);
-    	}else if(userId.split(",")[0].equals("s")) {
-    		webSocketSetjiu.put(userId, session);
-    	}else {
-    		webSocketSet.put(userId,session);
     	}
     }
     // 处理信息
@@ -36,17 +31,17 @@ public class MyWebSocketHandler implements WebSocketHandler{
     public void handleMessage(WebSocketSession session,
          WebSocketMessage<?> message) throws Exception {
     	 Gson gson = new Gson();
-    	 Map<String, Object> msg = gson.fromJson(message.getPayload().toString(),new TypeToken<Map<String, Object>>() {}.getType());
-//    	 System.out.println("后台："+msg.get("msgContent").toString());
-    	 if(msg.get("msgContent").toString().split(",")[0].equals("c")) {
-    		 sendMsgToAllUsers(message);
-    	 }else if(msg.get("msgContent").toString().split(",")[0].equals("s")) {
-    		 try {
-				WebSocketSession gsp = webSocketSetjiu.get(msg.get("gspId").toString());
-				gsp.sendMessage(message);
-			} catch (Exception e) {
-			}
-    	 }
+    	 try {
+    		 Map<String, Object> msg = gson.fromJson(message.getPayload().toString(),new TypeToken<Map<String, Object>>() {}.getType());
+    		 if(msg.get("type").toString().equals("batch")) {
+    				 sendMsgToAllUsers(message);
+    		 }else if(msg.get("type").toString().equals("once")) {
+    			 WebSocketSession sessions = webSocketSet.get(msg.get("sender").toString());
+    			 sessions.sendMessage(message);
+    		 }
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
     }
 
 

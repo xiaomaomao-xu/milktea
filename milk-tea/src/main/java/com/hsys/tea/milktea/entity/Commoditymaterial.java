@@ -1,5 +1,7 @@
 package com.hsys.tea.milktea.entity;
 
+import java.util.Date;
+
 public class Commoditymaterial {
     private Integer materialId;
 
@@ -14,6 +16,12 @@ public class Commoditymaterial {
     private Integer materialTypeId;
 
     private String imgthumb;
+
+    private Integer limitNum;
+
+    private Date createTime;
+
+    private Date modifyTime;
 
     public Integer getMaterialId() {
         return materialId;
@@ -69,5 +77,29 @@ public class Commoditymaterial {
 
     public void setImgthumb(String imgthumb) {
         this.imgthumb = imgthumb == null ? null : imgthumb.trim();
+    }
+
+    public Integer getLimitNum() {
+        return limitNum;
+    }
+
+    public void setLimitNum(Integer limitNum) {
+        this.limitNum = limitNum;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
     }
 }

@@ -1,9 +1,13 @@
 package com.hsys.tea.milktea.dao;
 
+import java.util.List;
+
 import com.hsys.tea.milktea.entity.Shoppingbag;
 
 public interface ShoppingbagMapper {
-	Shoppingbag findCurrentUserBag(Shoppingbag record);
+	List<Shoppingbag> findUserDetailBag(Shoppingbag record);
+	
+	List<Shoppingbag> findCurrentUserBag(Shoppingbag record);
 	
     int deleteByPrimaryKey(Long bagId);
 

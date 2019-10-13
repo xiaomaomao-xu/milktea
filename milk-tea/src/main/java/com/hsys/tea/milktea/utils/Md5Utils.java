@@ -33,7 +33,7 @@ public class Md5Utils {
 		return local.get();
 	}
 	
-	public static String md5(String password) {	
+	public String md5(String password) {	
 		try {
 			//得到md5算法器
 			MessageDigest md=MessageDigest.getInstance("MD5");

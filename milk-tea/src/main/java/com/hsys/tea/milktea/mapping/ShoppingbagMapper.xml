@@ -14,7 +14,7 @@
   </resultMap>
   
   <resultMap id="DetailResultMap" type="com.hsys.tea.milktea.entity.Shoppingbag" extends="BaseResultMap" >
-    <collection property="shoppingbagDetailInfos" ofType="com.hsys.tea.milktea.entity.ShoppingbagDetailInfo">
+    <collection property="shoppingbagDetailInfos" ofType="com.hsys.tea.milktea.entity.ShoppingbagdetailInfo">
 	    <result column="bag_detail_id" property="bagDetailId" jdbcType="BIGINT" />
 	    <result column="material_qantity" property="materialQantity" jdbcType="INTEGER" />
 	    <result column="material_id" property="materialId" jdbcType="INTEGER" />
@@ -30,7 +30,7 @@
     select 
     *
     from shoppingbag a,shoppingbagdetailinfo b
-    where a.bag_id = b.bag_id and user_id = #{user_id,jdbcType=BIGINT}
+    where a.bag_id = b.bag_id and user_id = #{userId,jdbcType=INTEGER}
   </select>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >

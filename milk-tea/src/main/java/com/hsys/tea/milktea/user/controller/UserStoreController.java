@@ -7,22 +7,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hsys.tea.milktea.entity.Commodityinfo;
 import com.hsys.tea.milktea.entity.Storeinfo;
-import com.hsys.tea.milktea.user.service.Impl.UserStoreService;
+import com.hsys.tea.milktea.user.service.IUserStoreService;
 
 @Controller
 @RequestMapping("/store")
-public class StoreController {
+public class UserStoreController {
 	
 	@Autowired
-	private UserStoreService ss;
+	private IUserStoreService ss;
 	
-	@RequestMapping("/getDetailStoreinfo")
+	@RequestMapping("/getDetailStoreinfo.do")
 	@ResponseBody
 	public String getDetailStoreinfo(Storeinfo store) {
 		return ss.getDetailStoreinfo(store);
 	}
 	
-	@RequestMapping("/getDetailCommodityinfo")
+	@RequestMapping("/getDetailCommodityinfo.do")
 	@ResponseBody
 	public String getDetailCommodityinfo(Commodityinfo commodityinfo) {
 		return ss.getDetailCommodityinfo(commodityinfo);

@@ -50,7 +50,7 @@ public class FileBizUtils {
             if (ServletFileUpload.isMultipartContent(req)) {  
                 DiskFileItemFactory factory = new DiskFileItemFactory();  
                 factory.setSizeThreshold(1 * 1024 * 1024);   
-                factory.setRepository(tmpDir);   
+                factory.setRepository(tmpDir);
                 ServletFileUpload sfu = new ServletFileUpload(factory); 
                 sfu.setFileSizeMax(5 * 1024 * 1024);  
                 sfu.setSizeMax(10 * 1024 * 1024);   

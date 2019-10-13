@@ -5,32 +5,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hsys.tea.milktea.entity.Storeinfo;
-import com.hsys.tea.milktea.manager.service.impl.StoreService;
+import com.hsys.tea.milktea.manager.service.IStoreService;
 
 public class StoreController {
 	
 	@Autowired
-	private StoreService ss;
+	private IStoreService ss;
 	
-	@RequestMapping("/getAllStore")
+	@RequestMapping("/getAllStore.do")
 	@ResponseBody
 	public String getAllStore() {
 		return ss.getAllStore();
 	}
 	
-	@RequestMapping("/getStore")
+	@RequestMapping("/getStore.do")
 	@ResponseBody
 	public String getStore(Storeinfo store) {
 		return ss.getStore(store);
 	}
 	
-	@RequestMapping("/savetStore")
+	@RequestMapping("/savetStore.do")
 	@ResponseBody
 	public String savetStore(Storeinfo store) {
 		return ss.saveStore(store);
 	}
 	
-	@RequestMapping("/deleteStore")
+	@RequestMapping("/deleteStore.do")
 	@ResponseBody
 	public String deleteStore(Storeinfo store) {
 		return ss.deleteStore(store);

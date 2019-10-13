@@ -39,8 +39,10 @@ public class Storeinfo {
     private String notice;
 
     private Integer busyness;
-    
-    private String distance;
+
+    private Integer discuss;
+	
+	private String distance;
     
     private List<Commoditytype> commoditytypes;
 
@@ -60,7 +62,7 @@ public class Storeinfo {
 		this.distance = distance;
 	}
 
-	public Integer getStoreId() {
+    public Integer getStoreId() {
         return storeId;
     }
 
@@ -202,5 +204,13 @@ public class Storeinfo {
 
     public void setBusyness(Integer busyness) {
         this.busyness = busyness;
+    }
+
+    public Integer getDiscuss() {
+        return discuss;
+    }
+
+    public void setDiscuss(Integer discuss) {
+        this.discuss = discuss;
     }
 }

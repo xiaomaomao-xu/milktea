@@ -6,27 +6,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hsys.tea.milktea.entity.Shopkeeperinfo;
-import com.hsys.tea.milktea.manager.service.impl.StoreOwnerService;
+import com.hsys.tea.milktea.manager.service.IStoreOwnerService;
 
 @Controller
 public class StoreOwnerController {
 	
 	@Autowired
-	private StoreOwnerService sos;
+	private IStoreOwnerService sos;
 	
-	@RequestMapping("/getStoreOwnerInfo")
+	@RequestMapping("/getStoreOwnerInfo.do")
 	@ResponseBody
 	public String getStoreOwnerInfo(Shopkeeperinfo ownerInfo) {
 		return sos.getStoreOwnerInfo(ownerInfo);
 	}
 	
-	@RequestMapping("/savaStoreOwnerInfo")
+	@RequestMapping("/savaStoreOwnerInfo.do")
 	@ResponseBody
 	public String savaStoreOwnerInfo(Shopkeeperinfo ownerInfo) {
 		return sos.savaStoreOwnerInfo(ownerInfo);
 	}
 	
-	@RequestMapping("/deleteStoreOwnerInfo")
+	@RequestMapping("/deleteStoreOwnerInfo.do")
 	@ResponseBody
 	public String deleteStoreOwnerInfo(Shopkeeperinfo ownerInfo) {
 		return sos.deleteStoreOwnerInfo(ownerInfo);

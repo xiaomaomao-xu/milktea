@@ -9,7 +9,7 @@ public class Userinfo {
 
     private String userPhone;
 
-    private String userSex;
+    private Integer userSex;
 
     private Date userBirthday;
 
@@ -37,6 +37,12 @@ public class Userinfo {
 
     private Integer blacklist;
 
+    private Integer userExp;
+
+    private Integer userGrabe;
+
+    private Integer userSvip;
+
     public Integer getUserId() {
         return userId;
     }
@@ -61,12 +67,12 @@ public class Userinfo {
         this.userPhone = userPhone == null ? null : userPhone.trim();
     }
 
-    public String getUserSex() {
+    public Integer getUserSex() {
         return userSex;
     }
 
-    public void setUserSex(String userSex) {
-        this.userSex = userSex == null ? null : userSex.trim();
+    public void setUserSex(Integer userSex) {
+        this.userSex = userSex;
     }
 
     public Date getUserBirthday() {
@@ -171,5 +177,29 @@ public class Userinfo {
 
     public void setBlacklist(Integer blacklist) {
         this.blacklist = blacklist;
+    }
+
+    public Integer getUserExp() {
+        return userExp;
+    }
+
+    public void setUserExp(Integer userExp) {
+        this.userExp = userExp;
+    }
+
+    public Integer getUserGrabe() {
+        return userGrabe;
+    }
+
+    public void setUserGrabe(Integer userGrabe) {
+        this.userGrabe = userGrabe;
+    }
+
+    public Integer getUserSvip() {
+        return userSvip;
+    }
+
+    public void setUserSvip(Integer userSvip) {
+        this.userSvip = userSvip;
     }
 }

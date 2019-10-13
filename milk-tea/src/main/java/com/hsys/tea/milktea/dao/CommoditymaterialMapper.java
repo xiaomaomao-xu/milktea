@@ -18,4 +18,6 @@ public interface CommoditymaterialMapper {
     int updateByPrimaryKeySelective(Commoditymaterial record);
 
     int updateByPrimaryKey(Commoditymaterial record);
+    
+    int updateByBatch(List<Commoditymaterial> records);
 }

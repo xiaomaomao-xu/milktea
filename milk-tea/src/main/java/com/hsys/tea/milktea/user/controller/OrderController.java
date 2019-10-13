@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.hsys.tea.milktea.entity.Orderinfo;
-import com.hsys.tea.milktea.user.service.Impl.OrderService;
+import com.hsys.tea.milktea.user.service.IOrderService;
 
 @Controller
 @RequestMapping("/order")
 public class OrderController {
 	
 	@Autowired
-	private OrderService os;
+	private IOrderService os;
 	
-	@RequestMapping("/insertCurrentUserOrder")
+	@RequestMapping("/insertCurrentUserOrder.do")
 	@ResponseBody
 	public String insertCurrentUserOrder(String orderinfoData) {
 		JSONObject shoppingbagJson = JSONObject.parseObject(orderinfoData);
@@ -25,15 +25,21 @@ public class OrderController {
 		return os.insertCurrentUserOrder(orderinfo);
 	}
 	
-	@RequestMapping("/getOrderinfo")
+	@RequestMapping("/getOrderinfo.do")
 	@ResponseBody
 	public String getOrderinfo(Orderinfo orderinfo) {
 		return os.getOrderinfo(orderinfo);
 	}
 	
-	@RequestMapping("/getDetailOrderinfo")
+	@RequestMapping("/getDetailOrderinfo.do")
 	@ResponseBody
 	public String getDetailOrderinfo(Orderinfo orderinfo) {
 		return os.getDetailOrderinfo(orderinfo);
+	}
+	
+	@RequestMapping("/updateOrder.do")
+	@ResponseBody
+	public String updateOrder(Orderinfo orderinfo) {
+		return os.updateOrder(orderinfo);
 	}
 }

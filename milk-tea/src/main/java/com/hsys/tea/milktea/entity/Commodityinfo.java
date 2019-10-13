@@ -20,17 +20,13 @@ public class Commodityinfo {
 
     private Integer commodityState;
 
-    private String materialId;
-
     private String imgthumb;
 
     private Date createTime;
 
     private Date modifyTime;
-
-    private Integer storeId;
-    
-    /**
+	
+	/**
      * 标签列表
      */
     private List<String> labels;
@@ -56,7 +52,7 @@ public class Commodityinfo {
 		this.labels = labels;
 	}
 
-	public Integer getCommodityId() {
+    public Integer getCommodityId() {
         return commodityId;
     }
 
@@ -120,14 +116,6 @@ public class Commodityinfo {
         this.commodityState = commodityState;
     }
 
-    public String getMaterialId() {
-        return materialId;
-    }
-
-    public void setMaterialId(String materialId) {
-        this.materialId = materialId == null ? null : materialId.trim();
-    }
-
     public String getImgthumb() {
         return imgthumb;
     }
@@ -150,13 +138,5 @@ public class Commodityinfo {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
-    }
-
-    public Integer getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(Integer storeId) {
-        this.storeId = storeId;
     }
 }

@@ -7,6 +7,30 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateFormat {
+	
+	/**
+	 * 线程安全的变量
+	 */
+	private static ThreadLocal<DateFormat> local = new ThreadLocal<DateFormat>();
+	
+	/**
+	 * 工具类的私有构造方法
+	 */
+	private DateFormat(){}
+	
+	/**
+	 * 获取工具类实例
+	 * @return
+	 */
+	public static synchronized DateFormat getInstance(){
+		DateFormat instance = local.get();
+		if (instance == null) {
+			instance = new DateFormat();
+			local.set(instance);
+		}
+		return local.get();
+	}
+	
 	public String DateString(Date date) {
 		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String Da=dateFormat.format(date);

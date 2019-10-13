@@ -2,12 +2,10 @@ package com.hsys.tea.milktea.entity;
 
 import java.util.Date;
 
-public class ShoppingbagDetailInfo {
+public class ShoppingbagdetailInfo {
     private Long bagDetailId;
 
     private Long bagId;
-
-    private Integer materialQantity;
 
     private Integer materialId;
 
@@ -29,14 +27,6 @@ public class ShoppingbagDetailInfo {
 
     public void setBagId(Long bagId) {
         this.bagId = bagId;
-    }
-
-    public Integer getMaterialQantity() {
-        return materialQantity;
-    }
-
-    public void setMaterialQantity(Integer materialQantity) {
-        this.materialQantity = materialQantity;
     }
 
     public Integer getMaterialId() {

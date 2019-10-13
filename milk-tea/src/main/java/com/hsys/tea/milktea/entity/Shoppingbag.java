@@ -22,13 +22,13 @@ public class Shoppingbag {
 
     private Integer blacklist;
     
-    private List<ShoppingbagDetailInfo> shoppingbagDetailInfos;
+    private List<ShoppingbagdetailInfo> shoppingbagDetailInfos;
 
-    public List<ShoppingbagDetailInfo> getShoppingbagDetailInfos() {
+    public List<ShoppingbagdetailInfo> getShoppingbagDetailInfos() {
 		return shoppingbagDetailInfos;
 	}
 
-	public void setShoppingbagDetailInfos(List<ShoppingbagDetailInfo> shoppingbagDetailInfos) {
+	public void setShoppingbagDetailInfos(List<ShoppingbagdetailInfo> shoppingbagDetailInfos) {
 		this.shoppingbagDetailInfos = shoppingbagDetailInfos;
 	}
 

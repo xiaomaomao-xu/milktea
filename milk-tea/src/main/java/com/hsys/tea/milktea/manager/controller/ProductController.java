@@ -6,33 +6,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hsys.tea.milktea.entity.Commoditymaterial;
-import com.hsys.tea.milktea.manager.service.impl.ProductService;
-
+import com.hsys.tea.milktea.manager.service.IProductService;
 @Service
 public class ProductController {
 	
 	@Autowired
-	private ProductService ps;
+	private IProductService ps;
 	
-	@RequestMapping("/getAllProduct")
+	@RequestMapping("/getAllProduct.do")
 	@ResponseBody
 	public String getAllProduct(Commoditymaterial material) {
 		return ps.getAllProduct(material);
 	}
 	
-	@RequestMapping("/getProduct")
+	@RequestMapping("/getProduct.do")
 	@ResponseBody
 	public String getProduct(Commoditymaterial material) {
 		return ps.getProduct(material);
 	}
 	
-	@RequestMapping("/savaProduct")
+	@RequestMapping("/savaProduct.do")
 	@ResponseBody
 	public String savaProduct(Commoditymaterial material) {
 		return ps.saveProduct(material);
 	}
 	
-	@RequestMapping("/deleteProduct")
+	@RequestMapping("/deleteProduct.do")
 	@ResponseBody
 	public String deleteProduct(Commoditymaterial material) {
 		return ps.deleteProduct(material);

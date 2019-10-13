@@ -8,31 +8,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.hsys.tea.milktea.entity.Shoppingbag;
-import com.hsys.tea.milktea.user.service.Impl.ShoppingBagService;
+import com.hsys.tea.milktea.user.service.IShoppingBagService;
 
 @Controller
 @RequestMapping("/bag")
 public class ShoppingBagController {
 	
 	@Autowired
-	private ShoppingBagService sbs;
+	private IShoppingBagService sbs;
 	
-	@RequestMapping("/findCurrentUserBag")
+	@RequestMapping("/findCurrentUserBag.do")
 	@ResponseBody
 	public String findCurrentUserBag(Shoppingbag shoppingbag) {
 		return sbs.findCurrentUserBag(shoppingbag);
 		
 	}
 	
-	@RequestMapping("/addCurrentUserBag")
+	@RequestMapping("/saveCurrentUserBag.do")
 	@ResponseBody
-	public String addCurrentUserBag(String shoppingbagData) {
+	public String saveCurrentUserBag(String shoppingbagData) {
 		JSONObject shoppingbagJson = JSONObject.parseObject(shoppingbagData);
 		Shoppingbag shoppingbag = JSON.toJavaObject(shoppingbagJson,Shoppingbag.class);
-		return sbs.addCurrentUserBag(shoppingbag);
-	}
-	
-	public String updateCurrentUserBag(Shoppingbag shoppingbag) {
-		return sbs.updateCurrentUserBag(shoppingbag);
+		return sbs.saveCurrentUserBag(shoppingbag);
 	}
 }

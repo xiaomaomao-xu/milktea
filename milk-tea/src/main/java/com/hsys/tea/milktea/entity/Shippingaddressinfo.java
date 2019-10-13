@@ -25,6 +25,8 @@ public class Shippingaddressinfo {
 
     private Date modifyTime;
 
+    private Integer blacklist;
+
     public Integer getAddressId() {
         return addressId;
     }
@@ -111,5 +113,13 @@ public class Shippingaddressinfo {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+
+    public Integer getBlacklist() {
+        return blacklist;
+    }
+
+    public void setBlacklist(Integer blacklist) {
+        this.blacklist = blacklist;
     }
 }

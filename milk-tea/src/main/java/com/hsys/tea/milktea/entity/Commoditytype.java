@@ -17,6 +17,8 @@ public class Commoditytype {
     private Integer priority;
 
     private Integer isOffer;
+
+    private String typeImage;
 	
 	private List<Commodityinfo> commodityinfos;
 	
@@ -92,5 +94,13 @@ public class Commoditytype {
 
     public void setIsOffer(Integer isOffer) {
         this.isOffer = isOffer;
+    }
+
+    public String getTypeImage() {
+        return typeImage;
+    }
+
+    public void setTypeImage(String typeImage) {
+        this.typeImage = typeImage == null ? null : typeImage.trim();
     }
 }

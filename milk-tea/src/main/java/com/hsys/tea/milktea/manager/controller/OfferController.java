@@ -7,56 +7,56 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hsys.tea.milktea.entity.Commodityinfo;
 import com.hsys.tea.milktea.entity.InfProductOfferingRel;
-import com.hsys.tea.milktea.manager.service.impl.OfferService;
+import com.hsys.tea.milktea.manager.service.IOfferService;
 
 @Controller
 public class OfferController {
 	@Autowired
-	private OfferService os;
+	private IOfferService os;
 	
-	@RequestMapping("/getAllOffer")
+	@RequestMapping("/getAllOffer.do")
 	@ResponseBody
 	public String getAllOffer(Commodityinfo offer) {
 		return os.getAllOffer(offer);
 	}
 	
-	@RequestMapping("/getOffer")
+	@RequestMapping("/getOffer.do")
 	@ResponseBody
 	public String getOffer(Commodityinfo offer) {
 		return os.getOffer(offer);
 	}
 	
-	@RequestMapping("/savaOffer")
+	@RequestMapping("/savaOffer.do")
 	@ResponseBody
 	public String savaOffer(Commodityinfo offer) {
 		return os.savaOffer(offer);
 	}
 	
-	@RequestMapping("/deleteOffer")
+	@RequestMapping("/deleteOffer.do")
 	@ResponseBody
 	public String deleteOffer(Commodityinfo offer) {
 		return os.deleteOffer(offer);
 	}
 	
-	@RequestMapping("/addProdOfferRel")
+	@RequestMapping("/addProdOfferRel.do")
 	@ResponseBody
 	public String addProdOfferRel(InfProductOfferingRel rel) {
 		return os.addProdOfferRel(rel);
 	}
 	
-	@RequestMapping("/deleteProdOfferRel")
+	@RequestMapping("/deleteProdOfferRel.do")
 	@ResponseBody
 	public String deleteProdOfferRel(InfProductOfferingRel rel) {
 		return os.deleteProdOfferRel(rel);
 	}
 	
-	@RequestMapping("/addOfferExclusion")
+	@RequestMapping("/addOfferExclusion.do")
 	@ResponseBody
 	public String addOfferExclusion(InfProductOfferingRel rel) {
 		return os.addOfferExclusion(rel);
 	}
 	
-	@RequestMapping("/cancelOfferExclusion")
+	@RequestMapping("/cancelOfferExclusion.do")
 	@ResponseBody
 	public String cancelOfferExclusion(InfProductOfferingRel rel) {
 		return os.addOfferExclusion(rel);
